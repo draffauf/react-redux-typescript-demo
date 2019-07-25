@@ -16,14 +16,13 @@ class CharacterList extends React.Component<IProps> {
     return (
       <div className="name-container">
         <ul>
-          {characters &&
-            characters.map(character => {
-              return (
-                <li key={character.name} className="name">
-                  <span>{character.name}</span>
-                </li>
-              );
-            })}
+          {characters && characters.map(character => {
+            return (
+              <li key={character.name} className="name">
+                <span>{character.name}</span>
+              </li>
+            );
+          })}
         </ul>
       </div>
     );

@@ -1,6 +1,7 @@
-
 // Import Reducer type
 import { Reducer } from 'redux';
+
+// Import Character actions and types
 import {
   CharacterActions,
   CharacterActionTypes,

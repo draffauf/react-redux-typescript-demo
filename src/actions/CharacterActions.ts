@@ -17,10 +17,8 @@ export interface ICharacterGetAllAction {
   characters: ICharacter[];
 }
 
-/* 
-Combine the action types with a union (we assume there are more)
-example: export type CharacterActions = IGetAllAction | IGetOneAction ... 
-*/
+//  Combine the action types with a union (we assume there are more)
+// example: export type CharacterActions = IGetAllAction | IGetOneAction ... 
 export type CharacterActions = ICharacterGetAllAction;
 
 /* Get All Action
