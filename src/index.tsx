@@ -20,7 +20,7 @@ import configureStore, { IAppState } from './store/Store';
 import { getAllCharacters } from './actions/CharacterActions';
 
 // Import out App component
-import App from './components/App';
+import App from './components/app/App';
 
 // Create interface for Props
 interface IProps {
@@ -29,7 +29,7 @@ interface IProps {
 
 // Create a root component that receives the store via props and
 // wraps the App component with Provider, giving props to containers
-const Root: React.SFC<IProps> = props => {
+export const Root: React.SFC<IProps> = props => {
   return (
     <Provider store={props.store}>
       <App />

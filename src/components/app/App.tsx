@@ -1,7 +1,7 @@
 import * as React from 'react';
-import '../App.css';
+import './App.css';
 
-import CharacterList from '../containers/CharacterList';
+import CharacterList from '../../containers/CharacterList';
 
 const App: React.SFC<{}> = () => {
   return (
