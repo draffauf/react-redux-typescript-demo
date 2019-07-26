@@ -1,10 +1,33 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project demonstrates my changes starting from [Create React App](https://github.com/facebook/create-react-app) to get to a more production worthy app.
+
+I also updated the initial app to be based off of an article by [DefinedByChoice](https://twitter.com/DefinedByChoice/) that makes an API call for Star Wars characters and lists the characters. This change introduces a real world API call for populating the store, something closer to a real-world business app.
+
+
+## Goals
+
+- Add testing, test coverage reporting, and approach 100% test coverage.
+- Use a scalable file structure, centered around feature/domain.
+- Maintain small files and classes.
+- Leverage TypeScript's type system as much as possible.
+
+
+## Added Patterns and Tools
+
+### Code organization
+- [Thunk](https://github.com/reduxjs/redux-thunk): write action creators that return functions.
+- [Organize files around feature/domain](https://marmelab.com/blog/2015/12/17/react-directory-structure.html)
+
+### Testing
+- Added [airbnb's Enzyme](https://github.com/airbnb/enzyme) for component testing
+- Added test coverage (`$ yarn test:coverage`) using the [Facebook docs](https://facebook.github.io/create-react-app/docs/running-tests)
+- Added test fixture for returned characters inside getCharactersResponse.ts
+
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+### `yarn start`
 
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -12,12 +35,17 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
-### `npm test`
+### `yarn test`
 
 Launches the test runner in the interactive watch mode.<br>
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+### `yarn test:coverage`
+
+Launches the test runner in the interactive watch mode.<br>
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `yarn run build`
 
 Builds the app for production to the `build` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -27,7 +55,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+### `yarn run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
