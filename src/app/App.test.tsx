@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import App from './App';
-import CharacterList from '../character-list/CharacterListContainer';
+import CharacterList from '../character/CharacterListContainer';
 
 describe('App', () => {
   const wrapper = shallow(<App />);

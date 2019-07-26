@@ -1,4 +1,4 @@
-import { ICharacter } from '../reducers/characterReducer';
+import { ICharacter } from './characterReducer';
 
 const getCharactersResponse: ICharacter[] = [{
   name: 'Luke Skywalker',

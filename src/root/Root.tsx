@@ -14,7 +14,7 @@ import './Root.css';
 import App from '../app/App';
 
 // Import IAppState
-import { IAppState } from '../../store/Store';
+import { IAppState } from './Store';
 
 // Create interface for Props
 interface IProps {

@@ -1,8 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+
+import { ICharacter } from './characterReducer';
+import getCharactersResponse from './getCharactersResponse';
+
 import CharacterList from './CharacterList';
-import { ICharacter } from '../../reducers/characterReducer';
-import getCharactersResponse from '../../fixtures/getCharactersResponse';
+import CharacterListItem from './CharacterListItem';
 
 describe('CharacterList', () => {
   describe('without characters', () => {
@@ -18,11 +21,13 @@ describe('CharacterList', () => {
   });
 
   describe('with characters', () => {
-    const wrapper = shallow(<CharacterList characters={getCharactersResponse} />);
+    const characters: ICharacter[] = getCharactersResponse;
+    const wrapper = shallow(<CharacterList characters={characters} />);
+    const character: ICharacter = characters[0];
 
     describe('renders', () => {
       it('a list item per character', () => {
-        const element = <li className='name'>Luke Skywalker</li>;
+        const element = <CharacterListItem key={character.name} character={character} />;
         expect(wrapper.contains(element)).toEqual(true);
       });
     });    

@@ -31,7 +31,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import {
   characterReducer,
   ICharacterState,
-} from '../reducers/characterReducer';
+} from '../character/characterReducer';
 
 // Create an interface for the application state
 export interface IAppState {

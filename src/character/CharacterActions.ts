@@ -4,7 +4,7 @@ import { ThunkAction } from 'redux-thunk';
 import axios from 'axios';
 
 // Import Character Typing
-import { ICharacter, ICharacterState } from '../reducers/characterReducer';
+import { ICharacter, ICharacterState } from './characterReducer';
 
 // Create Action Constants
 export enum CharacterActionTypes {

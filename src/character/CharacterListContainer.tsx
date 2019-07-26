@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import { IAppState } from '../../store/Store';
-import { ICharacter } from '../../reducers/characterReducer';
-import { getAllCharacters } from '../../actions/CharacterActions';
+import { IAppState } from '../root/Store';
+import { ICharacter } from './characterReducer';
+import { getAllCharacters } from './CharacterActions';
 import CharacterList from './CharacterList';
 
 // Create the containers interface
