@@ -7,7 +7,7 @@ export const mockStore = configureMockStore([thunk]);
 import moxios from 'moxios';
 
 // App imports
-import getCharactersResponse from './getCharactersMock';
+import getCharactersMock from './getCharactersMock';
 
 import {
   CharacterActionTypes,
@@ -26,7 +26,7 @@ describe('getAllCharacters', () => {
       request.respondWith({
         status: 200,
         response: {
-          results: getCharactersResponse,
+          results: getCharactersMock,
         },
       });
     });
@@ -35,7 +35,7 @@ describe('getAllCharacters', () => {
       { type: CharacterActionTypes.GET_CHARACTERS_START },
       {
         type: CharacterActionTypes.GET_CHARACTERS_SUCCESS,
-        characters: getCharactersResponse,
+        characters: getCharactersMock,
       },
     ];
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { ICharacter } from './characterReducer';
-import getCharactersResponse from './getCharactersMock';
+import getCharactersMock from './getCharactersMock';
 
 import CharacterList from './CharacterList';
 import CharacterListItem from './CharacterListItem';
@@ -21,7 +21,7 @@ describe('CharacterList', () => {
   });
 
   describe('with characters', () => {
-    const characters: ICharacter[] = getCharactersResponse;
+    const characters: ICharacter[] = getCharactersMock;
     const wrapper = shallow(<CharacterList characters={characters} />);
     const character: ICharacter = characters[0];
 

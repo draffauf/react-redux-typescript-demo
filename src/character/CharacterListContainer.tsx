@@ -12,7 +12,7 @@ interface IProps {
   characters: ICharacter[];
 }
 
-class CharacterListContainer extends React.Component<IProps> {
+export class CharacterListContainer extends React.Component<IProps> {
   public componentDidMount() {
     if (this.props.characters.length === 0) {
       this.props.getCharacters();
@@ -23,7 +23,7 @@ class CharacterListContainer extends React.Component<IProps> {
     const { characters } = this.props;
 
     return (
-      <div className="name-container">
+      <div className="characters-container">
         <CharacterList characters={characters} />
       </div>
     );

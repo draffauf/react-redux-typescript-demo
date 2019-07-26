@@ -1,9 +1,41 @@
+// React related imports
 import React from 'react';
 import { shallow } from 'enzyme';
-import CharacterList from './CharacterList';
-import { ICharacter } from './characterReducer';
-import getCharactersResponse from './getCharactersMock';
 
+// App imports
+import { ICharacter } from './characterReducer';
+import CharacterList from './CharacterList';
+import { CharacterListContainer } from './CharacterListContainer';
+import getCharactersMock from './getCharactersMock';
+
+// Tests
 describe('CharacterListContainer', () => {
-  it('true is true', () => { expect(true).toBe(true); });
+  describe('without characters', () => {
+    const characters: ICharacter[] = [];
+    const mockGetCharactersFunction = jest.fn();
+    const wrapper = shallow(<CharacterListContainer getCharacters={mockGetCharactersFunction} characters={characters} />);
+
+    it('calls getCharacters', () => {
+      expect(mockGetCharactersFunction.mock.calls.length).toBe(1)
+    });
+  });
+
+  describe('with characters', () => {
+    const characters: ICharacter[] = getCharactersMock;
+    const mockGetCharactersFunction = jest.fn();
+    const wrapper = shallow(<CharacterListContainer getCharacters={mockGetCharactersFunction} characters={characters} />);
+
+    it('does not call getCharacters', () => {
+      expect(mockGetCharactersFunction.mock.calls.length).toBe(0)
+    });
+
+    it('a character container', () => {
+      expect(wrapper.find('div.characters-container')).toHaveLength(1);
+    });
+
+    it('a character list', () => {
+      const element = <CharacterList characters={characters} />;
+      expect(wrapper.contains(element)).toEqual(true);
+    });
+  });
 });

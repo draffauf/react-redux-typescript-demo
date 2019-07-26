@@ -1,6 +1,6 @@
 import { ICharacter } from './characterReducer';
 
-const getCharactersResponse: ICharacter[] = [{
+const getCharactersMock: ICharacter[] = [{
   'name': 'Luke Skywalker',
   'height': '172',
   'mass': '77',
@@ -27,4 +27,4 @@ const getCharactersResponse: ICharacter[] = [{
   'url': 'https://swapi.co/api/people/1/'
 }];
 
-export default getCharactersResponse;
+export default getCharactersMock;

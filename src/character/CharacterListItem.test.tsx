@@ -2,12 +2,12 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { ICharacter } from './characterReducer';
-import getCharactersResponse from './getCharactersMock';
+import getCharactersMock from './getCharactersMock';
 
 import CharacterListItem from './CharacterListItem';
 
 describe('CharacterListItem', () => {
-  const character: ICharacter = getCharactersResponse[0];
+  const character: ICharacter = getCharactersMock[0];
   const wrapper = shallow(<CharacterListItem key={character.name} character={character} />);
 
   describe('renders', () => {
