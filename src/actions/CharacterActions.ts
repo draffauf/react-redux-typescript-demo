@@ -21,10 +21,15 @@ export interface ICharacterGetAllAction {
 // example: export type CharacterActions = IGetAllAction | IGetOneAction ... 
 export type CharacterActions = ICharacterGetAllAction;
 
-/* Get All Action
-<Promise<Return Type>, State Interface, Type of Param, Type of Action> */
+// Get All Action
+// <Promise<Return Type>, State Interface, Type of Param, Type of Action>
 export const getAllCharacters: ActionCreator<
-  ThunkAction<Promise<any>, ICharacterState, null, ICharacterGetAllAction>
+  ThunkAction<
+    Promise<any>,
+    ICharacterState,
+    null,
+    ICharacterGetAllAction
+  >
 > = () => {
   return async (dispatch: Dispatch) => {
     try {

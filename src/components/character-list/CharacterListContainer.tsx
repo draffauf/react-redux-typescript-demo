@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-// import { ActionCreator, Dispatch } from 'redux';
 
 import { IAppState } from '../../store/Store';
 import { ICharacter } from '../../reducers/characterReducer';
@@ -15,9 +14,9 @@ interface IProps {
 
 class CharacterListContainer extends React.Component<IProps> {
   public componentDidMount() {
-    if (this.props.characters.length == 0) {
+    if (this.props.characters.length === 0) {
       this.props.getAllCharacters();
-    }    
+    }
   }
 
   public render() {
