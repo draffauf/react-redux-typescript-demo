@@ -1,13 +1,13 @@
 import * as React from 'react';
 import './App.css';
 
-import CharacterList from '../../containers/CharacterList';
+import CharacterListContainer from '../character-list/CharacterListContainer';
 
 const App: React.SFC<{}> = () => {
   return (
     <>
       <h1>The Force Awakens</h1>
-      <CharacterList />
+      <CharacterListContainer />
     </>
   );
 };
