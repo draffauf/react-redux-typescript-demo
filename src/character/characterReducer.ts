@@ -42,7 +42,7 @@ export const characterReducer: Reducer<ICharacterState, CharacterActions> = (
   action
 ) => {
   switch (action.type) {
-    case CharacterActionTypes.GET_ALL: {
+    case CharacterActionTypes.GET_CHARACTERS_SUCCESS: {
       return {
         ...state,
         characters: action.characters,

@@ -6,40 +6,83 @@ import axios from 'axios';
 // Import Character Typing
 import { ICharacter, ICharacterState } from './characterReducer';
 
-// Create Action Constants
+
+
+// Action constants
 export enum CharacterActionTypes {
-  GET_ALL = 'GET_ALL',
+  GET_CHARACTERS_START = 'GET_CHARACTERS_START',
+  GET_CHARACTERS_SUCCESS = 'GET_CHARACTERS_SUCCESS',
+  GET_CHARACTERS_FAILURE = 'GET_CHARACTERS_FAILURE',
 }
 
-// Interface for Get All Action Type
-export interface ICharacterGetAllAction {
-  type: CharacterActionTypes.GET_ALL;
-  characters: ICharacter[];
+
+
+// Actions interfaces
+export interface ICharacterGetCharactersStartAction {
+  type: CharacterActionTypes.GET_CHARACTERS_START,
+}
+
+export interface ICharacterGetCharactersSuccessAction {
+  type: CharacterActionTypes.GET_CHARACTERS_SUCCESS,
+  characters: ICharacter[],
+}
+
+export interface ICharacterGetCharactersFailureAction {
+  type: CharacterActionTypes.GET_CHARACTERS_FAILURE,
 }
 
 // Combine the action types with a union (we assume there are more)
 // example: export type CharacterActions = IGetAllAction | IGetOneAction ... 
-export type CharacterActions = ICharacterGetAllAction;
+export type CharacterActions =
+  ICharacterGetCharactersStartAction |
+  ICharacterGetCharactersSuccessAction |
+  ICharacterGetCharactersFailureAction;
 
-// Get All Action
+
+
+// Action implementations
+const getCharactersStart = () => {
+  return {
+    type: CharacterActionTypes.GET_CHARACTERS_START,
+  };
+}
+
+const getCharactersSuccess = (data: any) => {
+  return {
+    type: CharacterActionTypes.GET_CHARACTERS_SUCCESS,
+    characters: data.results,
+  };
+}
+
+const getCharactersFailure = () => {
+  return {
+    type: CharacterActionTypes.GET_CHARACTERS_FAILURE,
+  };
+}
+
+
+
+// ActionCreators
+
 // <Promise<Return Type>, State Interface, Type of Param, Type of Action>
-export const getAllCharacters: ActionCreator<
+export const getCharacters: ActionCreator<
   ThunkAction<
     Promise<any>,
     ICharacterState,
     null,
-    ICharacterGetAllAction
+    ICharacterGetCharactersSuccessAction
   >
 > = () => {
-  return async (dispatch: Dispatch) => {
-    try {
-      const response = await axios.get('https://swapi.co/api/people/');
-      dispatch({
-        characters: response.data.results,
-        type: CharacterActionTypes.GET_ALL,
+  return (dispatch: Dispatch) => {
+    dispatch(getCharactersStart());
+
+    const url = 'https://swapi.co/api/people/';
+    return axios.get(url)
+      .then((response) => {
+        dispatch(getCharactersSuccess(response.data));
+      })
+      .catch((error) => {
+        dispatch(getCharactersFailure());
       });
-    } catch (err) {
-      console.error(err);
-    }
   };
 };

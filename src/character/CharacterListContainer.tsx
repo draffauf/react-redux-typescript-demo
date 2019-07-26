@@ -3,19 +3,19 @@ import { connect } from 'react-redux';
 
 import { IAppState } from '../root/Store';
 import { ICharacter } from './characterReducer';
-import { getAllCharacters } from './CharacterActions';
+import { getCharacters } from './CharacterActions';
 import CharacterList from './CharacterList';
 
 // Create the containers interface
 interface IProps {
-  getAllCharacters: any;
+  getCharacters: any;
   characters: ICharacter[];
 }
 
 class CharacterListContainer extends React.Component<IProps> {
   public componentDidMount() {
     if (this.props.characters.length === 0) {
-      this.props.getAllCharacters();
+      this.props.getCharacters();
     }
   }
 
@@ -39,7 +39,7 @@ const mapStateToProps = (store: IAppState) => {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    getAllCharacters: () => dispatch(getAllCharacters()),
+    getCharacters: () => dispatch(getCharacters()),
   }
 }
 
