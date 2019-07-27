@@ -1,6 +1,7 @@
 // Import Reducer type
 import { Reducer } from 'redux';
 
+// Business domain imports
 import {
   CharacterActions,
   CharacterActionTypes,
@@ -8,8 +9,7 @@ import {
 
 import ICharacterState from './ICharacterState.interface';
 
-
-
+// Business logic
 const initialCharacterState: ICharacterState = {
   characters: [],
 };

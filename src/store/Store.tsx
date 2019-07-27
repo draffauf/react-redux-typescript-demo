@@ -12,13 +12,11 @@ import thunk from 'redux-thunk';
 // Redux Dev Tools Extension
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-
-
-// Business domain
-
-// Import reducers and state type
+// Business domain imports
 import IAppState from './IAppState.interface';
 import characterReducer from '../character/characterReducer';
+
+
 
 // Create the root reducer
 const rootReducer = combineReducers<IAppState>({
