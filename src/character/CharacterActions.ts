@@ -16,8 +16,6 @@ export enum CharacterActionTypes {
   GET_CHARACTERS_FAILURE = 'GET_CHARACTERS_FAILURE',
 }
 
-
-
 // Actions interfaces
 export interface IGetCharactersStartAction {
   type: CharacterActionTypes.GET_CHARACTERS_START,
@@ -71,7 +69,7 @@ export const getCharacters: ActionCreator<
     Promise<any>,
     ICharacterState,
     null,
-    IGetCharactersSuccessAction
+    CharacterActions
   >
 > = () => {
   return (dispatch: Dispatch) => {
