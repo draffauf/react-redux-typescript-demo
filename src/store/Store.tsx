@@ -16,8 +16,6 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import IAppState from './IAppState.interface';
 import characterReducer from '../character/characterReducer';
 
-
-
 // Create the root reducer
 const rootReducer = combineReducers<IAppState>({
   characterState: characterReducer,
@@ -25,6 +23,11 @@ const rootReducer = combineReducers<IAppState>({
 
 // Create a configure store function of type `IAppState`
 export default function configureStore(): Store<IAppState, any> {
-  const store = createStore(rootReducer, undefined, composeWithDevTools(applyMiddleware(thunk)));
+  const store = createStore(
+                  rootReducer,
+                  undefined,
+                  composeWithDevTools(applyMiddleware(thunk))
+                );
+
   return store;
 }
