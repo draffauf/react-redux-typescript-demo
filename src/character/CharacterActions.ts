@@ -12,6 +12,7 @@ import CharacterActions from './CharacterActions.type';
 const getCharactersStart = () => {
   return {
     type: CharacterActionTypes.GET_CHARACTERS_START,
+    isFetching: true,
   };
 }
 
@@ -19,12 +20,14 @@ const getCharactersSuccess = (data: any) => {
   return {
     type: CharacterActionTypes.GET_CHARACTERS_SUCCESS,
     characters: data.results,
+    isFetching: false,
   };
 }
 
 const getCharactersFailure = () => {
   return {
     type: CharacterActionTypes.GET_CHARACTERS_FAILURE,
+    isFetching: false,
   };
 }
 

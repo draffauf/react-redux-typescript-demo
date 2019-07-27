@@ -28,14 +28,21 @@ describe('getAllCharacters', () => {
     });
 
     const expectedActions = [
-      { type: CharacterActionTypes.GET_CHARACTERS_START },
+      {
+        type: CharacterActionTypes.GET_CHARACTERS_START,
+        isFetching: true,
+      },
       {
         type: CharacterActionTypes.GET_CHARACTERS_SUCCESS,
         characters: getCharactersMock,
+        isFetching: false,
       },
     ];
 
-    const initialState = { characters: [] };
+    const initialState = {
+      characters: [],
+      isFetching: false,
+    };
     const store = mockStore(initialState);
 
     return store.dispatch<any>(getCharacters()).then(() => {
@@ -53,8 +60,14 @@ describe('getAllCharacters', () => {
     });
 
     const expectedActions = [
-      { type: CharacterActionTypes.GET_CHARACTERS_START },
-      { type: CharacterActionTypes.GET_CHARACTERS_FAILURE },
+      {
+        type: CharacterActionTypes.GET_CHARACTERS_START,
+        isFetching: true,
+      },
+      {
+        type: CharacterActionTypes.GET_CHARACTERS_FAILURE,
+        isFetching: false,
+      },
     ];
 
     const initialState = { characters: [] };

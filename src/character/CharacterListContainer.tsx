@@ -7,9 +7,11 @@ import { getCharacters } from './CharacterActions';
 import CharacterList from './CharacterList';
 
 // Define available props
+// TODO: use correct typing for getCharacters
 interface IProps {
   getCharacters: any;
   characters: ICharacter[];
+  isFetching: Boolean;
 }
 
 // Define container with available props
@@ -21,11 +23,18 @@ export class CharacterListContainer extends React.Component<IProps> {
   }
 
   public render() {
-    const { characters } = this.props;
+    const { characters, isFetching } = this.props;
+    let contents: JSX.Element;
+
+    if (isFetching) {
+      contents = <p>Loading</p>;
+    } else {
+      contents = <CharacterList characters={characters} />
+    }
 
     return (
       <div className="characters-container">
-        <CharacterList characters={characters} />
+        {contents}
       </div>
     );
   }
@@ -35,6 +44,7 @@ export class CharacterListContainer extends React.Component<IProps> {
 const mapStateToProps = (store: IAppState) => {
   return {
     characters: store.characterState.characters,
+    isFetching: store.characterState.isFetching,
   };
 };
 
