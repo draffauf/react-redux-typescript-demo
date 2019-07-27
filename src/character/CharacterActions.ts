@@ -3,6 +3,7 @@ import { ActionCreator, Dispatch } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 import axios from 'axios';
 
+// Business domain imports
 import ICharacterState from './ICharacterState.interface';
 import CharacterActionTypes from './CharacterActionTypes.enum';
 import CharacterActions from './CharacterActions.type';

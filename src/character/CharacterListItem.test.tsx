@@ -3,7 +3,6 @@ import { shallow } from 'enzyme';
 
 import ICharacter from './ICharacter.interface';
 import getCharactersMock from './getCharactersMock';
-
 import CharacterListItem from './CharacterListItem';
 
 describe('CharacterListItem', () => {

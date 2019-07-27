@@ -1,9 +1,5 @@
-// test/utils/mockStore.js
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-export const mockStore = configureMockStore([thunk]);
-
-// Import mock HTTP client
 import moxios from 'moxios';
 
 // App imports
@@ -11,6 +7,9 @@ import getCharactersMock from './getCharactersMock';
 import { getCharacters } from './CharacterActions';
 import CharacterActionTypes from './CharacterActionTypes.enum';
 
+// Configure the mockStore function
+// Note: if this begins to be used in several places, make a helper
+const mockStore = configureMockStore([thunk]);
 
 // Tests
 describe('getAllCharacters', () => {

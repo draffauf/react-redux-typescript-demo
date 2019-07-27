@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+// Business domain imports
 import ICharacter from './ICharacter.interface';
 import CharacterListItem from './CharacterListItem';
 

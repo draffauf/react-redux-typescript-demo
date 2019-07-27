@@ -1,8 +1,7 @@
-// React related imports
 import React from 'react';
 import { shallow } from 'enzyme';
 
-// App imports
+// Business domain imports
 import ICharacter from './ICharacter.interface';
 import CharacterList from './CharacterList';
 import { CharacterListContainer } from './CharacterListContainer';

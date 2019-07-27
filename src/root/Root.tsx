@@ -1,11 +1,8 @@
 import * as React from 'react';
-
-// Make the store available to all container components in the application
-// without passing it explicitly
 import { Provider } from 'react-redux';
 import { Store } from 'redux';
 
-// Import CSS
+// Business domain imports
 import './Root.css';
 import App from '../app/App';
 import IAppState from '../store/IAppState.interface';

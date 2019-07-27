@@ -6,12 +6,13 @@ import ICharacter from './ICharacter.interface';
 import { getCharacters } from './CharacterActions';
 import CharacterList from './CharacterList';
 
-// Create the containers interface
+// Define available props
 interface IProps {
   getCharacters: any;
   characters: ICharacter[];
 }
 
+// Define container with available props
 export class CharacterListContainer extends React.Component<IProps> {
   public componentDidMount() {
     if (this.props.characters.length === 0) {
@@ -30,13 +31,14 @@ export class CharacterListContainer extends React.Component<IProps> {
   }
 }
 
-// Grab the characters from the store and make them available on props
+// Make data available on props
 const mapStateToProps = (store: IAppState) => {
   return {
     characters: store.characterState.characters,
   };
 };
 
+// Make functions available on props
 const mapDispatchToProps = (dispatch: any) => {
   return {
     getCharacters: () => dispatch(getCharacters()),

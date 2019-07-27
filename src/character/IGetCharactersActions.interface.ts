@@ -1,7 +1,6 @@
 import ICharacter from './ICharacter.interface';
 import CharacterActionTypes from './CharacterActionTypes.enum';
 
-// Actions interfaces
 export interface IGetCharactersStartAction {
   type: CharacterActionTypes.GET_CHARACTERS_START;
 }

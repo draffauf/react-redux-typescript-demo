@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
+// Business domain imports
 import ICharacter from './ICharacter.interface';
 import getCharactersMock from './getCharactersMock';
-
 import CharacterList from './CharacterList';
 import CharacterListItem from './CharacterListItem';
 
