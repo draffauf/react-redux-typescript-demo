@@ -3,6 +3,14 @@ This project demonstrates my changes starting from [Create React App](https://gi
 I also updated the initial app to be based off of an article by [DefinedByChoice](https://twitter.com/DefinedByChoice/) that makes an API call for Star Wars characters and lists the characters. This change introduces a real world API call for populating the store, something closer to a real-world business app.
 
 
+| Statements | Branches | Functions | Lines |
+| -----------|----------|-----------|-------|
+|
+![Statements](https://img.shields.io/badge/Coverage-93.62%25-brightgreen.svg "Make me better!") |
+![Branches](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg "Make me better!") |
+![Functions](https://img.shields.io/badge/Coverage-84.21%25-yellow.svg "Make me better!") |
+![Lines](https://img.shields.io/badge/Coverage-93.62%25-brightgreen.svg "Make me better!") |
+
 ## Goals
 
 - Add testing, test coverage reporting, and approach 100% test coverage.

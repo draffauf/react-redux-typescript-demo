@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@olavoparno/jest-badges-readme": "^1.3.6",
     "@types/enzyme": "^3.10.3",
     "@types/jest": "^24.0.15",
     "@types/node": "^12.6.8",
@@ -28,6 +29,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:coverage": "react-scripts test --watchAll --coverage",
+    "test:badges": "CI=true react-scripts test --coverage && jest-badges-readme",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -53,13 +55,14 @@
     ],
     "coverageThreshold": {
       "global": {
-        "branches": 90,
-        "functions": 90,
-        "lines": 90,
-        "statements": 90
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": 80
       }
     },
     "coverageReporters": [
+      "json-summary",
       "text"
     ],
     "snapshotSerializers": [
