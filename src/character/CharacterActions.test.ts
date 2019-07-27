@@ -8,11 +8,8 @@ import moxios from 'moxios';
 
 // App imports
 import getCharactersMock from './getCharactersMock';
-
-import {
-  CharacterActionTypes,
-  getCharacters
-} from './CharacterActions';
+import { getCharacters } from './CharacterActions';
+import CharacterActionTypes from './CharacterActionTypes.enum';
 
 
 // Tests

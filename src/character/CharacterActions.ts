@@ -6,15 +6,9 @@ import axios from 'axios';
 // Import Character Typing
 import ICharacter from './ICharacter.interface';
 import ICharacterState from './ICharacterState.interface';
+import CharacterActionTypes from './CharacterActionTypes.enum';
 
 
-
-// Action constants
-export enum CharacterActionTypes {
-  GET_CHARACTERS_START = 'GET_CHARACTERS_START',
-  GET_CHARACTERS_SUCCESS = 'GET_CHARACTERS_SUCCESS',
-  GET_CHARACTERS_FAILURE = 'GET_CHARACTERS_FAILURE',
-}
 
 // Actions interfaces
 export interface IGetCharactersStartAction {

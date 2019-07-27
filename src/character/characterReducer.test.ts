@@ -1,11 +1,11 @@
 import characterReducer from './characterReducer';
-import ICharacterState from "./ICharacterState";
+import ICharacterState from "./ICharacterState.interface";
 
 import {
-  CharacterActionTypes,
   IGetCharactersSuccessAction,
   IGetCharactersFailureAction,
 } from './CharacterActions';
+import CharacterActionTypes from './CharacterActionTypes.enum';
 
 import getCharactersMock from './getCharactersMock';
 
