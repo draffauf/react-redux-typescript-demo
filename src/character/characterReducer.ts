@@ -1,8 +1,7 @@
 // Import Reducer type
 import { Reducer } from 'redux';
 
-// Business domain imports
-import { CharacterActions } from './CharacterActions';
+import CharacterActions from './CharacterActions.type';
 import CharacterActionTypes from './CharacterActionTypes.enum';
 import ICharacterState from './ICharacterState.interface';
 

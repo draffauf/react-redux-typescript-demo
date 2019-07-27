@@ -1,12 +1,10 @@
 import characterReducer from './characterReducer';
 import ICharacterState from "./ICharacterState.interface";
-
 import {
   IGetCharactersSuccessAction,
-  IGetCharactersFailureAction,
-} from './CharacterActions';
+  IGetCharactersFailureAction
+} from "./IGetCharactersActions.interface";
 import CharacterActionTypes from './CharacterActionTypes.enum';
-
 import getCharactersMock from './getCharactersMock';
 
 describe('characterReducer', () => {
