@@ -5,7 +5,7 @@ import axios from 'axios';
 
 // Import Character Typing
 import ICharacter from './ICharacter.interface';
-import ICharacterState from "./ICharacterState";
+import ICharacterState from './ICharacterState.interface';
 
 
 

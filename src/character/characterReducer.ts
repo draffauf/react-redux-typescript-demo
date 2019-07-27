@@ -6,7 +6,7 @@ import {
   CharacterActionTypes,
 } from './CharacterActions';
 
-import ICharacterState from './ICharacterState';
+import ICharacterState from './ICharacterState.interface';
 
 
 

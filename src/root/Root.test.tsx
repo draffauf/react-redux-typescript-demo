@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import App from '../app/App';
 import Root from './Root';
-import configureStore from './Store';
+import configureStore from "../store/Store";
 
 describe('Root', () => {
   const store = configureStore();

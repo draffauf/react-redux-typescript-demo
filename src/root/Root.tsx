@@ -3,18 +3,12 @@ import * as React from 'react';
 // Make the store available to all container components in the application
 // without passing it explicitly
 import { Provider } from 'react-redux';
-
-// Store type from Redux
 import { Store } from 'redux';
 
 // Import CSS
 import './Root.css';
-
-// Import out App component
 import App from '../app/App';
-
-// Import IAppState
-import { IAppState } from './Store';
+import IAppState from '../store/IAppState.interface';
 
 // Create interface for Props
 interface IProps {
