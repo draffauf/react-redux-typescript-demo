@@ -1,4 +1,4 @@
-import { ICharacter } from './characterReducer';
+import ICharacter from './ICharacter.interface';
 
 const getCharactersMock: ICharacter[] = [{
   'name': 'Luke Skywalker',

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 
 import { IAppState } from '../root/Store';
-import { ICharacter } from './characterReducer';
+import ICharacter from './ICharacter.interface';
 import { getCharacters } from './CharacterActions';
 import CharacterList from './CharacterList';
 

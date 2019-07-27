@@ -3,7 +3,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 // App imports
-import { ICharacter } from './characterReducer';
+import ICharacter from './ICharacter.interface';
 import CharacterList from './CharacterList';
 import { CharacterListContainer } from './CharacterListContainer';
 import getCharactersMock from './getCharactersMock';

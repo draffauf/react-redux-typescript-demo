@@ -4,7 +4,8 @@ import { ThunkAction } from 'redux-thunk';
 import axios from 'axios';
 
 // Import Character Typing
-import { ICharacter, ICharacterState } from './characterReducer';
+import ICharacter from './ICharacter.interface';
+import ICharacterState from "./ICharacterState";
 
 
 
@@ -18,25 +19,25 @@ export enum CharacterActionTypes {
 
 
 // Actions interfaces
-export interface ICharacterGetCharactersStartAction {
+export interface IGetCharactersStartAction {
   type: CharacterActionTypes.GET_CHARACTERS_START,
 }
 
-export interface ICharacterGetCharactersSuccessAction {
+export interface IGetCharactersSuccessAction {
   type: CharacterActionTypes.GET_CHARACTERS_SUCCESS,
   characters: ICharacter[],
 }
 
-export interface ICharacterGetCharactersFailureAction {
+export interface IGetCharactersFailureAction {
   type: CharacterActionTypes.GET_CHARACTERS_FAILURE,
 }
 
 // Combine the action types with a union (we assume there are more)
 // example: export type CharacterActions = IGetAllAction | IGetOneAction ... 
 export type CharacterActions =
-  ICharacterGetCharactersStartAction |
-  ICharacterGetCharactersSuccessAction |
-  ICharacterGetCharactersFailureAction;
+  IGetCharactersStartAction |
+  IGetCharactersSuccessAction |
+  IGetCharactersFailureAction;
 
 
 
@@ -70,7 +71,7 @@ export const getCharacters: ActionCreator<
     Promise<any>,
     ICharacterState,
     null,
-    ICharacterGetCharactersSuccessAction
+    IGetCharactersSuccessAction
   >
 > = () => {
   return (dispatch: Dispatch) => {

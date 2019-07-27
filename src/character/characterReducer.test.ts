@@ -1,19 +1,17 @@
-import {
-  characterReducer,
-  ICharacterState,
-} from './characterReducer';
+import characterReducer from './characterReducer';
+import ICharacterState from "./ICharacterState";
 
 import {
   CharacterActionTypes,
-  ICharacterGetCharactersSuccessAction,
-  ICharacterGetCharactersFailureAction,
+  IGetCharactersSuccessAction,
+  IGetCharactersFailureAction,
 } from './CharacterActions';
 
 import getCharactersMock from './getCharactersMock';
 
 describe('characterReducer', () => {
-  describe('For ICharacterGetCharactersSuccessAction', () => {
-    const action: ICharacterGetCharactersSuccessAction = {
+  describe('when successful', () => {
+    const action: IGetCharactersSuccessAction = {
       type: CharacterActionTypes.GET_CHARACTERS_SUCCESS,
       characters: getCharactersMock,
     };
@@ -21,13 +19,13 @@ describe('characterReducer', () => {
       characters: [],
     };
     const newState = characterReducer(initialState, action)
-      it('returns new state with characters', () => {
+      it('returns new state with fetched characters', () => {
         expect(newState.characters).toEqual(getCharactersMock);
       });
   });
 
   describe('default path for unknown type', () => {
-    const fakeAction: ICharacterGetCharactersFailureAction = {
+    const fakeAction: IGetCharactersFailureAction = {
       type: CharacterActionTypes.GET_CHARACTERS_FAILURE
     };
     const initialState: ICharacterState = {

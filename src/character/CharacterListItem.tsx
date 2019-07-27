@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { ICharacter } from './characterReducer';
+
+import ICharacter from './ICharacter.interface';
 
 // Create interface for Props
 interface IProps {

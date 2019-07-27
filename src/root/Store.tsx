@@ -28,10 +28,8 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 // Business domain
 
 // Import reducers and state type
-import {
-  characterReducer,
-  ICharacterState,
-} from '../character/characterReducer';
+import characterReducer from '../character/characterReducer';
+import ICharacterState from "../character/ICharacterState";
 
 // Create an interface for the application state
 export interface IAppState {
