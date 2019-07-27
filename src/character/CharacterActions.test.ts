@@ -39,7 +39,7 @@ describe('getAllCharacters', () => {
     const initialState = { characters: [] };
     const store = mockStore(initialState);
 
-    return store.dispatch(getCharacters()).then(() => {
+    return store.dispatch<any>(getCharacters()).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
     });
   });
@@ -61,7 +61,7 @@ describe('getAllCharacters', () => {
     const initialState = { characters: [] };
     const store = mockStore(initialState);
 
-    return store.dispatch(getCharacters()).then(() => {
+    return store.dispatch<any>(getCharacters()).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
     });
   });
