@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import moxios from 'moxios';
 
 // App imports
-import getCharactersMock from './getCharactersMock';
+import GetCharactersMock from './GetCharactersMock';
 import { getCharacters } from './CharacterActions';
 import CharacterActionTypes from './CharacterActionTypes.enum';
 
@@ -22,7 +22,7 @@ describe('getAllCharacters', () => {
       request.respondWith({
         status: 200,
         response: {
-          results: getCharactersMock,
+          results: GetCharactersMock,
         },
       });
     });
@@ -34,7 +34,7 @@ describe('getAllCharacters', () => {
       },
       {
         type: CharacterActionTypes.GET_CHARACTERS_SUCCESS,
-        characters: getCharactersMock,
+        characters: GetCharactersMock,
         isFetching: false,
       },
     ];

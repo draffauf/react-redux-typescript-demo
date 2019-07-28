@@ -1,6 +1,6 @@
 import ICharacter from './ICharacter.interface';
 
-const getCharactersMock: ICharacter[] = [{
+const GetCharactersMock: ICharacter[] = [{
   'name': 'Luke Skywalker',
   'height': '172',
   'mass': '77',
@@ -27,4 +27,4 @@ const getCharactersMock: ICharacter[] = [{
   'url': 'https://swapi.co/api/people/1/'
 }];
 
-export default getCharactersMock;
+export default GetCharactersMock;

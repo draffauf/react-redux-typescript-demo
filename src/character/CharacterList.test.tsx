@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 
 // Business domain imports
 import ICharacter from './ICharacter.interface';
-import getCharactersMock from './getCharactersMock';
+import GetCharactersMock from './GetCharactersMock';
 import CharacterList from './CharacterList';
 import CharacterListItem from './CharacterListItem';
 
@@ -21,7 +21,7 @@ describe('CharacterList', () => {
   });
 
   describe('with characters', () => {
-    const characters: ICharacter[] = getCharactersMock;
+    const characters: ICharacter[] = GetCharactersMock;
     const wrapper = shallow(<CharacterList characters={characters} />);
     const character: ICharacter = characters[0];
 
@@ -30,6 +30,6 @@ describe('CharacterList', () => {
         const element = <CharacterListItem key={character.name} character={character} />;
         expect(wrapper.contains(element)).toEqual(true);
       });
-    });    
+    });
   });
 });

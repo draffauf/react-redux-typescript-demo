@@ -5,7 +5,7 @@ import { shallow, ShallowWrapper } from 'enzyme';
 import ICharacter from './ICharacter.interface';
 import CharacterList from './CharacterList';
 import { CharacterListContainer } from './CharacterListContainer';
-import getCharactersMock from './getCharactersMock';
+import GetCharactersMock from './GetCharactersMock';
 
 // Extract to helper?
 interface renderElementParameters {
@@ -48,7 +48,7 @@ describe('CharacterListContainer', () => {
   });
 
   describe('with characters', () => {
-    const characters: ICharacter[] = getCharactersMock;
+    const characters: ICharacter[] = GetCharactersMock;
     const mockGetCharactersFunction = jest.fn();
     const wrapper = renderCharacterListContainer({
       characters,

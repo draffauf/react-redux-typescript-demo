@@ -2,11 +2,11 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import ICharacter from './ICharacter.interface';
-import getCharactersMock from './getCharactersMock';
+import GetCharactersMock from './GetCharactersMock';
 import CharacterListItem from './CharacterListItem';
 
 describe('CharacterListItem', () => {
-  const character: ICharacter = getCharactersMock[0];
+  const character: ICharacter = GetCharactersMock[0];
   const wrapper = shallow(<CharacterListItem key={character.name} character={character} />);
 
   describe('renders', () => {
@@ -14,5 +14,5 @@ describe('CharacterListItem', () => {
       const element = <li key='Luke Skywalker' className='name'>Luke Skywalker</li>;
       expect(wrapper.contains(element)).toEqual(true);
     });
-  });    
+  });
 });

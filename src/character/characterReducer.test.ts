@@ -6,7 +6,7 @@ import {
   IGetCharactersFailureAction
 } from "./IGetCharactersActions.interface";
 import CharacterActionTypes from './CharacterActionTypes.enum';
-import getCharactersMock from './getCharactersMock';
+import GetCharactersMock from './GetCharactersMock';
 
 const initialState: ICharacterState = {
   characters: [],
@@ -29,13 +29,13 @@ describe('characterReducer action responses for', () => {
   describe('GET_CHARACTERS_SUCCESS', () => {
     const action: IGetCharactersSuccessAction = {
       type: CharacterActionTypes.GET_CHARACTERS_SUCCESS,
-      characters: getCharactersMock,
+      characters: GetCharactersMock,
       isFetching: false,
     };
 
     const newState = characterReducer(initialState, action);
     it('has fetched characters', () => {
-      expect(newState.characters).toEqual(getCharactersMock);
+      expect(newState.characters).toEqual(GetCharactersMock);
     });
 
     it('is not fetching', () => {
