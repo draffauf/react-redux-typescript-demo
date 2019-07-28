@@ -14,7 +14,7 @@ describe('CharacterList', () => {
 
     describe('renders', () => {
       it('empty undordered list', () => {
-        const element = <ul></ul>;
+        const element = <ul className="list-group"></ul>;
         expect(wrapper.contains(element)).toEqual(true);
       });
     });
