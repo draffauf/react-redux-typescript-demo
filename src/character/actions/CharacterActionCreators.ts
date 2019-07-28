@@ -1,9 +1,9 @@
 // Import redux types
 import { ActionCreator, Dispatch } from 'redux';
 import { ThunkAction } from 'redux-thunk';
-import axios from 'axios';
 
 // Business domain imports
+import { RestDataSource } from '../data/RestDataSource';
 import ICharacterState from '../data/ICharacterState.interface';
 import CharacterActionTypes from './CharacterActionTypes.enum';
 import {
@@ -46,9 +46,9 @@ export const getCharacters: ActionCreator<
 > = () => {
   return (dispatch: Dispatch) => {
     dispatch(getCharactersStart());
+    const dataSource: RestDataSource = new RestDataSource();
 
-    const url = 'https://swapi.co/api/people/';
-    return axios.get(url)
+    return dataSource.getCharacters()
       .then((response) => {
         dispatch(getCharactersSuccess(response.data));
       })
