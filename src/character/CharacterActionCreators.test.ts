@@ -4,8 +4,12 @@ import moxios from 'moxios';
 
 // App imports
 import GetCharactersMock from './GetCharactersMock';
-import { getCharacters } from './CharacterActionCreators';
-import CharacterActionTypes from './CharacterActionTypes.enum';
+import {
+  getCharactersStart,
+  getCharactersSuccess,
+  getCharactersFailure,
+  getCharacters
+} from './CharacterActionCreators';
 
 // Configure the mockStore function
 // Note: if this begins to be used in several places, make a helper
@@ -21,22 +25,13 @@ describe('getAllCharacters', () => {
       const request = moxios.requests.mostRecent();
       request.respondWith({
         status: 200,
-        response: {
-          results: GetCharactersMock,
-        },
+        response: GetCharactersMock,
       });
     });
 
     const expectedActions = [
-      {
-        type: CharacterActionTypes.GET_CHARACTERS_START,
-        isFetching: true,
-      },
-      {
-        type: CharacterActionTypes.GET_CHARACTERS_SUCCESS,
-        characters: GetCharactersMock,
-        isFetching: false,
-      },
+      getCharactersStart(),
+      getCharactersSuccess(GetCharactersMock)
     ];
 
     const initialState = {
@@ -60,14 +55,8 @@ describe('getAllCharacters', () => {
     });
 
     const expectedActions = [
-      {
-        type: CharacterActionTypes.GET_CHARACTERS_START,
-        isFetching: true,
-      },
-      {
-        type: CharacterActionTypes.GET_CHARACTERS_FAILURE,
-        isFetching: false,
-      },
+      getCharactersStart(),
+      getCharactersFailure(),
     ];
 
     const initialState = { characters: [] };

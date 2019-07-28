@@ -1,40 +1,32 @@
 import CharacterReducer from './CharacterReducer';
 import ICharacterState from "./ICharacterState.interface";
-import {
-  IGetCharactersStartAction,
-  IGetCharactersSuccessAction,
-  IGetCharactersFailureAction
-} from "./IGetCharactersActions.interface";
-import CharacterActionTypes from './CharacterActionTypes.enum';
 import GetCharactersMock from './GetCharactersMock';
+import {
+  getCharactersStart,
+  getCharactersSuccess,
+  getCharactersFailure
+} from './CharacterActionCreators';
 
 const initialState: ICharacterState = {
   characters: [],
   isFetching: false,
 };
 
-describe('CharacterReducer action responses for', () => {
+describe('CharacterReducer action type responses for', () => {
   describe('GET_CHARACTERS_START', () => {
-    const action: IGetCharactersStartAction = {
-      type: CharacterActionTypes.GET_CHARACTERS_START,
-      isFetching: true,
-    };
-
+    const action = getCharactersStart();
     const newState = CharacterReducer(initialState, action);
+
     it('is fetching', () => {
       expect(newState.isFetching).toBe(true);
     });
   });
 
   describe('GET_CHARACTERS_SUCCESS', () => {
-    const action: IGetCharactersSuccessAction = {
-      type: CharacterActionTypes.GET_CHARACTERS_SUCCESS,
-      characters: GetCharactersMock,
-      isFetching: false,
-    };
-
+    const data = { results: GetCharactersMock };
+    const action = getCharactersSuccess(data);
     const newState = CharacterReducer(initialState, action);
-    it('has fetched characters', () => {
+    it('fetched characters', () => {
       expect(newState.characters).toEqual(GetCharactersMock);
     });
 
@@ -44,14 +36,10 @@ describe('CharacterReducer action responses for', () => {
   });
 
   describe('GET_CHARACTERS_FAILURE', () => {
-    const action: IGetCharactersFailureAction = {
-      type: CharacterActionTypes.GET_CHARACTERS_FAILURE,
-      isFetching: false,
-    };
-
+    const action = getCharactersFailure();
     const newState = CharacterReducer(initialState, action);
 
-    it('does not have fetched characters', () => {
+    it('has not fetched characters', () => {
       expect(newState.characters).toEqual([]);
     });
 

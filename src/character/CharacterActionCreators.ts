@@ -6,16 +6,21 @@ import axios from 'axios';
 // Business domain imports
 import ICharacterState from './ICharacterState.interface';
 import CharacterActionTypes from './CharacterActionTypes.enum';
+import {
+  IGetCharactersStartAction,
+  IGetCharactersSuccessAction,
+  IGetCharactersFailureAction
+} from './IGetCharactersActions.interface';
 import CharacterActions from './CharacterActions.type';
 
-export const getCharactersStart = () => {
+export const getCharactersStart = (): IGetCharactersStartAction => {
   return {
     type: CharacterActionTypes.GET_CHARACTERS_START,
     isFetching: true,
   };
 }
 
-export const getCharactersSuccess = (data: any) => {
+export const getCharactersSuccess = (data: any): IGetCharactersSuccessAction => {
   return {
     type: CharacterActionTypes.GET_CHARACTERS_SUCCESS,
     characters: data.results,
@@ -23,7 +28,7 @@ export const getCharactersSuccess = (data: any) => {
   };
 }
 
-export const getCharactersFailure = () => {
+export const getCharactersFailure = (): IGetCharactersFailureAction => {
   return {
     type: CharacterActionTypes.GET_CHARACTERS_FAILURE,
     isFetching: false,
