@@ -14,11 +14,11 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 // Business domain imports
 import IAppState from './IAppState.interface';
-import characterReducer from '../character/characterReducer';
+import CharacterReducer from '../character/CharacterReducer';
 
 // Create the root reducer
 const rootReducer = combineReducers<IAppState>({
-  characterState: characterReducer,
+  characterState: CharacterReducer,
 });
 
 // Create a configure store function of type `IAppState`

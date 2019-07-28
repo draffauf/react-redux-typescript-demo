@@ -1,4 +1,4 @@
-import characterReducer from './characterReducer';
+import CharacterReducer from './CharacterReducer';
 import ICharacterState from "./ICharacterState.interface";
 import {
   IGetCharactersStartAction,
@@ -13,14 +13,14 @@ const initialState: ICharacterState = {
   isFetching: false,
 };
 
-describe('characterReducer action responses for', () => {
+describe('CharacterReducer action responses for', () => {
   describe('GET_CHARACTERS_START', () => {
     const action: IGetCharactersStartAction = {
       type: CharacterActionTypes.GET_CHARACTERS_START,
       isFetching: true,
     };
 
-    const newState = characterReducer(initialState, action);
+    const newState = CharacterReducer(initialState, action);
     it('is fetching', () => {
       expect(newState.isFetching).toBe(true);
     });
@@ -33,7 +33,7 @@ describe('characterReducer action responses for', () => {
       isFetching: false,
     };
 
-    const newState = characterReducer(initialState, action);
+    const newState = CharacterReducer(initialState, action);
     it('has fetched characters', () => {
       expect(newState.characters).toEqual(GetCharactersMock);
     });
@@ -49,7 +49,7 @@ describe('characterReducer action responses for', () => {
       isFetching: false,
     };
 
-    const newState = characterReducer(initialState, action);
+    const newState = CharacterReducer(initialState, action);
 
     it('does not have fetched characters', () => {
       expect(newState.characters).toEqual([]);

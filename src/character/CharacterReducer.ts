@@ -11,7 +11,7 @@ const initialCharacterState: ICharacterState = {
   isFetching: false,
 };
 
-const characterReducer: Reducer<ICharacterState, CharacterActions> = (
+const CharacterReducer: Reducer<ICharacterState, CharacterActions> = (
   state = initialCharacterState,
   action
 ) => {
@@ -40,4 +40,4 @@ const characterReducer: Reducer<ICharacterState, CharacterActions> = (
   }
 };
 
-export default characterReducer;
+export default CharacterReducer;
