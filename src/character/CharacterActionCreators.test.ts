@@ -4,7 +4,7 @@ import moxios from 'moxios';
 
 // App imports
 import GetCharactersMock from './GetCharactersMock';
-import { getCharacters } from './CharacterActions';
+import { getCharacters } from './CharacterActionCreators';
 import CharacterActionTypes from './CharacterActionTypes.enum';
 
 // Configure the mockStore function

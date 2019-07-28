@@ -8,15 +8,14 @@ import ICharacterState from './ICharacterState.interface';
 import CharacterActionTypes from './CharacterActionTypes.enum';
 import CharacterActions from './CharacterActions.type';
 
-// Action implementations
-const getCharactersStart = () => {
+export const getCharactersStart = () => {
   return {
     type: CharacterActionTypes.GET_CHARACTERS_START,
     isFetching: true,
   };
 }
 
-const getCharactersSuccess = (data: any) => {
+export const getCharactersSuccess = (data: any) => {
   return {
     type: CharacterActionTypes.GET_CHARACTERS_SUCCESS,
     characters: data.results,
@@ -24,14 +23,13 @@ const getCharactersSuccess = (data: any) => {
   };
 }
 
-const getCharactersFailure = () => {
+export const getCharactersFailure = () => {
   return {
     type: CharacterActionTypes.GET_CHARACTERS_FAILURE,
     isFetching: false,
   };
 }
 
-// ActionCreators
 // <Promise<Return Type>, State Interface, Type of Param, Type of Action>
 export const getCharacters: ActionCreator<
   ThunkAction<

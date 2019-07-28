@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import IAppState from '../store/IAppState.interface';
 import ICharacter from './ICharacter.interface';
-import { getCharacters } from './CharacterActions';
+import { getCharacters } from './CharacterActionCreators';
 import CharacterList from './CharacterList';
 
 // Define available props
