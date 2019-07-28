@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 // Business domain imports
-import ICharacter from './ICharacter.interface';
+import ICharacter from './data/ICharacter.interface';
 import CharacterListItem from './CharacterListItem';
 
 // Create interface for Props

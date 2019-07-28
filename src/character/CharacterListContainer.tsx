@@ -2,8 +2,8 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 
 import IAppState from '../store/IAppState.interface';
-import ICharacter from './ICharacter.interface';
-import { getCharacters } from './CharacterActionCreators';
+import ICharacter from './data/ICharacter.interface';
+import { getCharacters } from './actions/CharacterActionCreators';
 import CharacterList from './CharacterList';
 
 // Define available props

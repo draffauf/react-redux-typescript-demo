@@ -1,11 +1,11 @@
-import CharacterReducer from './CharacterReducer';
-import ICharacterState from "./ICharacterState.interface";
-import GetCharactersMock from './GetCharactersMock';
 import {
   getCharactersStart,
   getCharactersSuccess,
   getCharactersFailure
-} from './CharacterActionCreators';
+} from '../actions/CharacterActionCreators';
+import ICharacterState from "../data/ICharacterState.interface";
+import GetCharactersMock from '../data/GetCharactersMock';
+import CharacterReducer from './CharacterReducer';
 
 const initialState: ICharacterState = {
   characters: [],

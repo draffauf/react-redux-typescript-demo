@@ -1,9 +1,10 @@
 // Import Reducer type
 import { Reducer } from 'redux';
 
-import CharacterActions from './CharacterActions.type';
-import CharacterActionTypes from './CharacterActionTypes.enum';
-import ICharacterState from './ICharacterState.interface';
+// Busines domain imports
+import CharacterActions from '../actions/CharacterActions.type';
+import CharacterActionTypes from '../actions/CharacterActionTypes.enum';
+import ICharacterState from '../data/ICharacterState.interface';
 
 // Business logic
 const initialCharacterState: ICharacterState = {

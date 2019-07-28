@@ -2,10 +2,10 @@ import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
 
 // Business domain imports
-import ICharacter from './ICharacter.interface';
+import ICharacter from './data/ICharacter.interface';
 import CharacterList from './CharacterList';
 import { CharacterListContainer } from './CharacterListContainer';
-import GetCharactersMock from './GetCharactersMock';
+import GetCharactersMock from './data/GetCharactersMock';
 
 // Extract to helper?
 interface renderElementParameters {

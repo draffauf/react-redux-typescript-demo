@@ -10,7 +10,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 // Business domain imports
 import IAppState from './IAppState.interface';
-import CharacterReducer from '../character/CharacterReducer';
+import CharacterReducer from '../character/reducers/CharacterReducer';
 
 // Create the root reducer
 const rootReducer = combineReducers<IAppState>({

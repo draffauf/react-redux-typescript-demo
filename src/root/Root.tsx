@@ -3,7 +3,6 @@ import { Provider } from 'react-redux';
 import { Store } from 'redux';
 
 // Business domain imports
-import './Root.css';
 import App from '../app/App';
 import IAppState from '../store/IAppState.interface';
 

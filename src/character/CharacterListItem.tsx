@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ICharacter from './ICharacter.interface';
+import ICharacter from './data/ICharacter.interface';
 
 interface IProps {
   character: ICharacter;

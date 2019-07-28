@@ -1,4 +1,4 @@
-import ICharacter from './ICharacter.interface';
+import ICharacter from '../data/ICharacter.interface';
 import CharacterActionTypes from './CharacterActionTypes.enum';
 
 export interface IGetCharactersStartAction {

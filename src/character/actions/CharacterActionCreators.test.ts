@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import moxios from 'moxios';
 
 // App imports
-import GetCharactersMock from './GetCharactersMock';
+import GetCharactersMock from '../data/GetCharactersMock';
 import {
   getCharactersStart,
   getCharactersSuccess,

@@ -4,7 +4,7 @@ import { ThunkAction } from 'redux-thunk';
 import axios from 'axios';
 
 // Business domain imports
-import ICharacterState from './ICharacterState.interface';
+import ICharacterState from '../data/ICharacterState.interface';
 import CharacterActionTypes from './CharacterActionTypes.enum';
 import {
   IGetCharactersStartAction,
