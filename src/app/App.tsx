@@ -6,7 +6,10 @@ import CharacterListContainer from '../character/CharacterListContainer';
 const App: React.SFC<{}> = () => {
   return (
     <>
-      <h1>The Force Awakens</h1>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <a className="navbar-brand" href="#">Star Wars Characters</a>
+      </nav>
+
       <CharacterListContainer />
     </>
   );

@@ -13,7 +13,7 @@ const CharacterList: React.SFC<IProps> = props => {
   const { characters } = props;
 
   return (
-    <ul>
+    <ul className="list-group">
       {characters && characters.map(character => {
         return (
           <CharacterListItem key={character.name} character={character} />
