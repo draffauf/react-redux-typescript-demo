@@ -1,6 +1,7 @@
 import * as React from 'react';
 import ICharacter from './data/ICharacter.interface';
 
+// Create interface for Props
 interface IProps {
   character: ICharacter;
 }

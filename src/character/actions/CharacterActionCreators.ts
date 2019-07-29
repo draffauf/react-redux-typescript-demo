@@ -57,3 +57,27 @@ export const getCharacters: ActionCreator<
       });
   };
 };
+
+
+// <Promise<Return Type>, State Interface, Type of Param, Type of Action>
+export const searchCharacters: ActionCreator<
+  ThunkAction<
+    Promise<any>,
+    ICharacterState,
+    null,
+    CharacterActions
+  >
+> = (term: String) => {
+  return (dispatch: Dispatch) => {
+    dispatch(getCharactersStart());
+    const dataSource: RestDataSource = new RestDataSource();
+
+    return dataSource.searchCharacters(term)
+      .then((response) => {
+        dispatch(getCharactersSuccess(response.data));
+      })
+      .catch((error) => {
+        dispatch(getCharactersFailure());
+      });
+  };
+};

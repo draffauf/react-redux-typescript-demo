@@ -2,26 +2,30 @@ import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
 
 // Business domain imports
+import GetCharactersMock from './data/GetCharactersMock';
+import { CharacterContainer } from './CharacterContainer';
 import ICharacter from './data/ICharacter.interface';
 import CharacterList from './CharacterList';
-import { CharacterListContainer } from './CharacterListContainer';
-import GetCharactersMock from './data/GetCharactersMock';
+import Loader from './Loader';
 
 // Extract to helper?
 interface renderElementParameters {
+  getCharacters?: jest.Mock,
+  searchCharacters?: jest.Mock,
   characters?: ICharacter[],
-  mockGetCharactersFunction?: jest.Mock,
   isFetching?: Boolean,
 }
 
 const renderCharacterListContainer = ({
+  getCharacters = jest.fn(),
+  searchCharacters = jest.fn(),
   characters = [],
-  mockGetCharactersFunction = jest.fn(),
   isFetching = false,
 } : renderElementParameters): ShallowWrapper => {
   return shallow(
-    <CharacterListContainer
-      getCharacters={mockGetCharactersFunction}
+    <CharacterContainer
+      getCharacters={getCharacters}
+      searchCharacters={searchCharacters}
       characters={characters}
       isFetching={isFetching}
     />
@@ -33,30 +37,32 @@ describe('CharacterListContainer', () => {
   describe('when fetching', () => {
     const wrapper = renderCharacterListContainer({ isFetching: true });
 
-    it('display "Loading"', () => {
-      expect(wrapper.contains('Loading')).toBe(true);
+    it('display "Loader"', () => {
+      const element = <Loader />;
+
+      expect(wrapper.contains(element)).toBe(true);
     });
   });
 
   describe('without characters', () => {
-    const mockGetCharactersFunction = jest.fn();
-    const wrapper = renderCharacterListContainer({ mockGetCharactersFunction });
+    const getCharacters = jest.fn();
+    const wrapper = renderCharacterListContainer({ getCharacters });
 
     it('calls getCharacters', () => {
-      expect(mockGetCharactersFunction.mock.calls.length).toBe(1)
+      expect(getCharacters.mock.calls.length).toBe(1)
     });
   });
 
   describe('with characters', () => {
     const characters: ICharacter[] = GetCharactersMock;
-    const mockGetCharactersFunction = jest.fn();
+    const getCharacters = jest.fn();
     const wrapper = renderCharacterListContainer({
       characters,
-      mockGetCharactersFunction
+      getCharacters
     });
 
     it('does not call getCharacters', () => {
-      expect(mockGetCharactersFunction.mock.calls.length).toBe(0)
+      expect(getCharacters.mock.calls.length).toBe(0)
     });
 
     it('a character container', () => {

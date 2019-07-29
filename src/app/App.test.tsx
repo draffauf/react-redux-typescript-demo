@@ -3,14 +3,14 @@ import { shallow } from 'enzyme';
 
 // Business domain imports
 import App from './App';
-import CharacterList from '../character/CharacterListContainer';
+import CharacterContainer from '../character/CharacterContainer';
 
 describe('App', () => {
   const wrapper = shallow(<App />);
 
   describe('renders', () => {
-    it('CharacterList', () => {
-      const element = <CharacterList />;
+    it('CharacterContainer', () => {
+      const element = <CharacterContainer />;
       expect(wrapper.contains(element)).toEqual(true);
     });
   });
