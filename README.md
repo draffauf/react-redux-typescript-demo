@@ -5,7 +5,11 @@ I also updated the initial app to be based off of an article by [DefinedByChoice
 
 | Statements | Branches | Functions | Lines |
 | -----------|----------|-----------|-------|
-| ![Statements](https://img.shields.io/badge/Coverage-93.62%25-brightgreen.svg "Make me better!") | ![Branches](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg "Make me better!") | ![Functions](https://img.shields.io/badge/Coverage-84.21%25-yellow.svg "Make me better!") | ![Lines](https://img.shields.io/badge/Coverage-93.62%25-brightgreen.svg "Make me better!") |
+|
+![Statements](https://img.shields.io/badge/Coverage-92.65%25-brightgreen.svg "Make me better!") |
+![Branches](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg "Make me better!") |
+![Functions](https://img.shields.io/badge/Coverage-84.38%25-yellow.svg "Make me better!") |
+![Lines](https://img.shields.io/badge/Coverage-92.65%25-brightgreen.svg "Make me better!") |
 
 ## Goals
 
@@ -24,7 +28,7 @@ I also updated the initial app to be based off of an article by [DefinedByChoice
 ### Testing
 - Added [airbnb's Enzyme](https://github.com/airbnb/enzyme) for component testing
 - Added test coverage (`$ yarn test:coverage`) using the [Facebook docs](https://facebook.github.io/create-react-app/docs/running-tests)
-- Added test fixture for returned characters inside GetCharactersMock.ts
+- Added test fixture for returned characters inside getCharactersMock.ts
 - I tried both container testing approaches here, and preferred the one that doesn't require connect. [here](https://hackernoon.com/unit-testing-redux-connected-components-692fa3c4441c)
 
 ## Available Scripts
