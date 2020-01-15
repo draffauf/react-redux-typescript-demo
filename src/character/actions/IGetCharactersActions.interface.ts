@@ -1,6 +1,12 @@
 import ICharacter from '../data/ICharacter.interface';
 import CharacterActionTypes from './CharacterActionTypes.enum';
 
+export interface ISetCharacterAction {
+  type: CharacterActionTypes.SET_CHARACTER,
+  character: ICharacter,
+  isFetching: false,
+}
+
 export interface IGetCharactersStartAction {
   type: CharacterActionTypes.GET_CHARACTERS_START,
   isFetching: true,

@@ -1,19 +1,31 @@
 import * as React from 'react';
+
 import ICharacter from './data/ICharacter.interface';
 
 // Create interface for Props
 interface IProps {
-  character: ICharacter;
+  character: ICharacter,
+  setCharacter: any,
 }
 
-const CharacterListItem: React.SFC<IProps> = props => {
-  const { character } = props;
+export class CharacterListItem extends React.Component<IProps> {
+  _onClickHandler = (event: React.MouseEvent) => {
+    const { character, setCharacter } = this.props;
+    event.preventDefault();
+    setCharacter(character);
+  }
 
-  return (
-    <li key={character.name} className="list-group-item">
-      {character.name}
-    </li>
-  );
+  render() {
+    const { character } = this.props;
+    return (
+      <li
+        key={character.name}
+        className="list-group-item"
+        onClick={this._onClickHandler}>
+        {character.name}
+      </li>
+    );
+  }
 };
 
 export default CharacterListItem;

@@ -8,6 +8,7 @@ import ICharacterState from '../data/ICharacterState.interface';
 
 // Business logic
 const initialCharacterState: ICharacterState = {
+  character: undefined,
   characters: [],
   isFetching: false,
 };
@@ -17,6 +18,13 @@ const CharacterReducer: Reducer<ICharacterState, CharacterActions> = (
   action
 ) => {
   switch (action.type) {
+    case CharacterActionTypes.SET_CHARACTER: {
+      return {
+        ...state,
+        character: action.character,
+        isFetching: action.isFetching,
+      };
+    }
     case CharacterActionTypes.GET_CHARACTERS_START: {
       return {
         ...state,

@@ -4,9 +4,11 @@ import { connect } from 'react-redux';
 import IAppState from '../store/IAppState.interface';
 import ICharacter from './data/ICharacter.interface';
 import {
+  setCharacter,
   getCharacters,
   searchCharacters
 } from './actions/CharacterActionCreators';
+import Character from './Character';
 import CharacterList from './CharacterList';
 import { CharacterSearch } from './CharacterSearch';
 import NavigationBar from './NavigationBar';
@@ -16,8 +18,10 @@ import Loader from './Loader';
 // Define available props
 // TODO: use correct typing for getCharacters
 interface IProps {
-  getCharacters: any,
-  searchCharacters: any,
+  character: any,
+  setCharacter: Function,
+  getCharacters: Function,
+  searchCharacters: Function,
   characters: ICharacter[],
   isFetching: Boolean
 }
@@ -32,7 +36,9 @@ export class CharacterContainer extends React.Component<IProps> {
 
   public render() {
     const {
+      character,
       characters,
+      setCharacter,
       searchCharacters,
       isFetching
     } = this.props;
@@ -46,7 +52,15 @@ export class CharacterContainer extends React.Component<IProps> {
         { isFetching ? (
           <Loader></Loader>
         ) : (
-          <CharacterList characters={characters} />
+          <div className="row">
+            <div className="col-sm">
+              <CharacterList characters={characters} setCharacter={setCharacter} />
+            </div>
+
+            <div className="col-sm">
+              <Character character={character} />
+            </div>
+          </div>
         )}
       </div>
     );
@@ -56,6 +70,7 @@ export class CharacterContainer extends React.Component<IProps> {
 // Make data available on props
 const mapStateToProps = (store: IAppState) => {
   return {
+    character: store.characterState.character,
     characters: store.characterState.characters,
     isFetching: store.characterState.isFetching,
   };
@@ -64,9 +79,11 @@ const mapStateToProps = (store: IAppState) => {
 // Make functions available on props
 const mapDispatchToProps = (dispatch: any) => {
   return {
+    setCharacter: (character: any) => dispatch(setCharacter(character)),
     getCharacters: () => dispatch(getCharacters()),
     searchCharacters: (term: String) => dispatch(searchCharacters(term)),
   }
 }
 
+// Connect the app aware container to the store and reducers
 export default connect(mapStateToProps, mapDispatchToProps)(CharacterContainer);

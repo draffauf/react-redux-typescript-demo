@@ -8,11 +8,9 @@ interface IProps {
 export class CharacterSearch extends React.Component<IProps, { value: string }> {
   componentWillMount() {
     this.setState({ value: '' });
-    this._onChangeHandler = this._onChangeHandler.bind(this);
-    this._onSubmitHandler = this._onSubmitHandler.bind(this);
   }
 
-  _onChangeHandler(event: React.ChangeEvent) {
+  _onChangeHandler = (event: React.ChangeEvent) => {
     const input = (event.target as HTMLInputElement).value;
     this.setState({ value: input });
   }

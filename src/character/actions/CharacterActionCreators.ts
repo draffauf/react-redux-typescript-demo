@@ -4,14 +4,23 @@ import { ThunkAction } from 'redux-thunk';
 
 // Business domain imports
 import { RestDataSource } from '../data/RestDataSource';
-import ICharacterState from '../data/ICharacterState.interface';
+import ICharacterState from '../data/ICharacter.interface';
 import CharacterActionTypes from './CharacterActionTypes.enum';
 import {
+  ISetCharacterAction,
   IGetCharactersStartAction,
   IGetCharactersSuccessAction,
   IGetCharactersFailureAction
 } from './IGetCharactersActions.interface';
 import CharacterActions from './CharacterActions.type';
+
+export const setCharacter = (character: any): ISetCharacterAction => {
+  return {
+    type: CharacterActionTypes.SET_CHARACTER,
+    character: character,
+    isFetching: false,
+  };
+}
 
 export const getCharactersStart = (): IGetCharactersStartAction => {
   return {
@@ -34,6 +43,7 @@ export const getCharactersFailure = (): IGetCharactersFailureAction => {
     isFetching: false,
   };
 }
+
 
 // <Promise<Return Type>, State Interface, Type of Param, Type of Action>
 export const getCharacters: ActionCreator<

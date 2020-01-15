@@ -9,6 +9,14 @@ describe('getCharacters', () => {
     axios.get = jest.fn();
   })
 
+  describe('getCharacter', () => {
+    it('httpClient is called as expected', () => {
+      const characterId = 1;
+      restDataSource.getCharacter(characterId);
+      expect(axios.get).toHaveBeenCalledWith('https://swapi.co/api/people/1');
+    });
+  });
+
   describe('getCharacters', () => {
     it('httpClient is called as expected', () => {
       restDataSource.getCharacters();

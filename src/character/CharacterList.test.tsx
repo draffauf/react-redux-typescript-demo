@@ -5,12 +5,13 @@ import { shallow } from 'enzyme';
 import ICharacter from './data/ICharacter.interface';
 import GetCharactersMock from './data/GetCharactersMock';
 import CharacterList from './CharacterList';
-import CharacterListItem from './CharacterListItem';
 
 describe('CharacterList', () => {
+  const setCharacter = jest.fn();
+
   describe('without characters', () => {
     const characters: ICharacter[] = [];
-    const wrapper = shallow(<CharacterList characters={characters} />);
+    const wrapper = shallow(<CharacterList characters={characters} setCharacter={setCharacter} />);
 
     describe('renders', () => {
       it('empty undordered list', () => {
@@ -22,13 +23,13 @@ describe('CharacterList', () => {
 
   describe('with characters', () => {
     const characters: ICharacter[] = GetCharactersMock;
-    const wrapper = shallow(<CharacterList characters={characters} />);
+    const wrapper = shallow(<CharacterList characters={characters} setCharacter={setCharacter} />);
     const character: ICharacter = characters[0];
 
     describe('renders', () => {
       it('a list item per character', () => {
-        const element = <CharacterListItem key={character.name} character={character} />;
-        expect(wrapper.contains(element)).toEqual(true);
+        const character = wrapper.find('li');
+        expect(character).toBeDefined();
       });
     });
   });

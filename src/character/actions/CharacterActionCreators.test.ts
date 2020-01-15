@@ -3,10 +3,12 @@ import thunk from 'redux-thunk';
 import moxios from 'moxios';
 
 // App imports
+import GetCharacterMock from '../data/GetCharacterMock';
 import GetCharactersMock from '../data/GetCharactersMock';
 import {
-  getCharacters,
   searchCharacters,
+  setCharacter,
+  getCharacters,
   getCharactersStart,
   getCharactersSuccess,
   getCharactersFailure,
@@ -17,6 +19,20 @@ import {
 const mockStore = configureMockStore([thunk]);
 
 // Tests
+describe('setCharacter', () => {
+  it('creates GET_CHARACTER_START, GET_CHARACTER_SUCCESS after successfuly fetching character', () => {
+    const initialState = {
+      character: undefined,
+      characters: [],
+      isFetching: false,
+    };
+    const store = mockStore(initialState);
+
+    expect(store.dispatch<any>(setCharacter(GetCharacterMock)).character).toEqual(GetCharacterMock);
+  });
+});
+
+
 describe('getCharacters', () => {
   beforeEach(() => { moxios.install(); });
   afterEach(() => { moxios.uninstall(); });
@@ -89,6 +105,7 @@ describe('searchCharacters', () => {
     ];
 
     const initialState = {
+      character: undefined,
       characters: [],
       isFetching: false,
     };
