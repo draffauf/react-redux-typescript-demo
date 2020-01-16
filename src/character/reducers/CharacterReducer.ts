@@ -22,7 +22,6 @@ const CharacterReducer: Reducer<ICharacterState, CharacterActions> = (
       return {
         ...state,
         character: action.character,
-        isFetching: action.isFetching,
       };
     }
     case CharacterActionTypes.GET_CHARACTERS_START: {

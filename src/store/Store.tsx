@@ -15,7 +15,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 // Business domain imports
 import IAppState from './IAppState.interface';
 import CharacterReducer from '../character/reducers/CharacterReducer';
-import charactersSagas from '../character/sagas/character';
+import charactersSagas from '../character/sagas/Character';
 
 // Saga Middleware
 const sagaMiddleware = createSagaMiddleware();

@@ -1,9 +1,11 @@
 import {
+  setCharacter,
   getCharactersStart,
   getCharactersSuccess,
   getCharactersFailure
 } from '../actions/CharacterActionCreators';
 import ICharacterState from "../data/ICharacterState.interface";
+import GetCharacterMock from '../data/GetCharacterMock';
 import GetCharactersMock from '../data/GetCharactersMock';
 import CharacterReducer from './CharacterReducer';
 
@@ -13,6 +15,15 @@ const initialState: ICharacterState = {
 };
 
 describe('CharacterReducer action type responses for', () => {
+  describe('SET_CHARACTER', () => {
+    const action = setCharacter(GetCharacterMock);
+    const newState = CharacterReducer(initialState, action);
+
+    it('character is set', () => {
+      expect(newState.character).toEqual(GetCharacterMock);
+    });
+  });
+
   describe('GET_CHARACTERS_START', () => {
     const action = getCharactersStart();
     const newState = CharacterReducer(initialState, action);
