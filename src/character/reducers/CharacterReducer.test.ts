@@ -23,7 +23,7 @@ describe('CharacterReducer action type responses for', () => {
   });
 
   describe('GET_CHARACTERS_SUCCESS', () => {
-    const data = { results: GetCharactersMock };
+    const data = GetCharactersMock ;
     const action = getCharactersSuccess(data);
     const newState = CharacterReducer(initialState, action);
     it('fetched characters', () => {

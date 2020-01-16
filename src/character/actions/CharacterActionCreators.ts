@@ -1,24 +1,26 @@
-// Import redux types
-import { ActionCreator, Dispatch } from 'redux';
-import { ThunkAction } from 'redux-thunk';
-
 // Business domain imports
-import { RestDataSource } from '../data/RestDataSource';
-import ICharacterState from '../data/ICharacter.interface';
 import CharacterActionTypes from './CharacterActionTypes.enum';
 import {
   ISetCharacterAction,
   IGetCharactersStartAction,
   IGetCharactersSuccessAction,
-  IGetCharactersFailureAction
+  IGetCharactersFailureAction,
+  ISearchCharactersAction
 } from './IGetCharactersActions.interface';
-import CharacterActions from './CharacterActions.type';
 
 export const setCharacter = (character: any): ISetCharacterAction => {
   return {
     type: CharacterActionTypes.SET_CHARACTER,
     character: character,
     isFetching: false,
+  };
+}
+
+export const searchCharacters = (term: string): ISearchCharactersAction => {
+  return {
+    type: CharacterActionTypes.SEARCH_CHARACTERS,
+    term,
+    isFetching: true,
   };
 }
 
@@ -29,10 +31,10 @@ export const getCharactersStart = (): IGetCharactersStartAction => {
   };
 }
 
-export const getCharactersSuccess = (data: any): IGetCharactersSuccessAction => {
+export const getCharactersSuccess = (characters: any): IGetCharactersSuccessAction => {
   return {
     type: CharacterActionTypes.GET_CHARACTERS_SUCCESS,
-    characters: data.results,
+    characters,
     isFetching: false,
   };
 }
@@ -43,51 +45,3 @@ export const getCharactersFailure = (): IGetCharactersFailureAction => {
     isFetching: false,
   };
 }
-
-
-// <Promise<Return Type>, State Interface, Type of Param, Type of Action>
-export const getCharacters: ActionCreator<
-  ThunkAction<
-    Promise<any>,
-    ICharacterState,
-    null,
-    CharacterActions
-  >
-> = () => {
-  return (dispatch: Dispatch) => {
-    dispatch(getCharactersStart());
-    const dataSource: RestDataSource = new RestDataSource();
-
-    return dataSource.getCharacters()
-      .then((response) => {
-        dispatch(getCharactersSuccess(response.data));
-      })
-      .catch((error) => {
-        dispatch(getCharactersFailure());
-      });
-  };
-};
-
-
-// <Promise<Return Type>, State Interface, Type of Param, Type of Action>
-export const searchCharacters: ActionCreator<
-  ThunkAction<
-    Promise<any>,
-    ICharacterState,
-    null,
-    CharacterActions
-  >
-> = (term: String) => {
-  return (dispatch: Dispatch) => {
-    dispatch(getCharactersStart());
-    const dataSource: RestDataSource = new RestDataSource();
-
-    return dataSource.searchCharacters(term)
-      .then((response) => {
-        dispatch(getCharactersSuccess(response.data));
-      })
-      .catch((error) => {
-        dispatch(getCharactersFailure());
-      });
-  };
-};

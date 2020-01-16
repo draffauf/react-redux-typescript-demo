@@ -7,6 +7,12 @@ export interface ISetCharacterAction {
   isFetching: false,
 }
 
+export interface ISearchCharactersAction {
+  type: CharacterActionTypes.SEARCH_CHARACTERS,
+  term: string,
+  isFetching: true,
+}
+
 export interface IGetCharactersStartAction {
   type: CharacterActionTypes.GET_CHARACTERS_START,
   isFetching: true,

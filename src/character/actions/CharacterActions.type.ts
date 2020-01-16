@@ -1,5 +1,6 @@
 import {
   ISetCharacterAction,
+  ISearchCharactersAction,
   IGetCharactersStartAction,
   IGetCharactersSuccessAction,
   IGetCharactersFailureAction
@@ -8,6 +9,7 @@ import {
 // Combine the action types with a union (we assume there are more)
 type CharacterActions =
   ISetCharacterAction
+  | ISearchCharactersAction
   | IGetCharactersStartAction
   | IGetCharactersSuccessAction
   | IGetCharactersFailureAction;

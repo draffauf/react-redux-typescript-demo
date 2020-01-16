@@ -1,22 +1,24 @@
 import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
 import moxios from 'moxios';
 
 // App imports
 import GetCharacterMock from '../data/GetCharacterMock';
 import GetCharactersMock from '../data/GetCharactersMock';
 import {
-  searchCharacters,
   setCharacter,
-  getCharacters,
+  searchCharacters,
   getCharactersStart,
   getCharactersSuccess,
   getCharactersFailure,
 } from './CharacterActionCreators';
+import createSagaMiddleware from 'redux-saga';
+import charactersSaga from '../sagas/character';
+import { doesNotReject } from 'assert';
 
 // Configure the mockStore function
 // Note: if this begins to be used in several places, make a helper
-const mockStore = configureMockStore([thunk]);
+const sagaMiddleware = createSagaMiddleware();
+const mockStore = configureMockStore([sagaMiddleware]);
 
 // Tests
 describe('setCharacter', () => {
@@ -27,28 +29,29 @@ describe('setCharacter', () => {
       isFetching: false,
     };
     const store = mockStore(initialState);
+    sagaMiddleware.run(charactersSaga);
 
     expect(store.dispatch<any>(setCharacter(GetCharacterMock)).character).toEqual(GetCharacterMock);
   });
 });
 
 
-describe('getCharacters', () => {
+describe('getCharactersStart', () => {
   beforeEach(() => { moxios.install(); });
   afterEach(() => { moxios.uninstall(); });
 
-  it('creates GET_CHARACTERS_START, GET_CHARACTERS_SUCCESS after successfuly fetching characters', () => {
+  it('creates GET_CHARACTERS_START, GET_CHARACTERS_SUCCESS after successfuly fetching characters', done => {
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
       request.respondWith({
         status: 200,
-        response: GetCharactersMock,
+        response: { results: GetCharactersMock },
       });
     });
 
     const expectedActions = [
       getCharactersStart(),
-      getCharactersSuccess(GetCharactersMock)
+      getCharactersSuccess(GetCharactersMock),
     ];
 
     const initialState = {
@@ -56,13 +59,20 @@ describe('getCharacters', () => {
       isFetching: false,
     };
     const store = mockStore(initialState);
+    sagaMiddleware.run(charactersSaga);
 
-    return store.dispatch<any>(getCharacters()).then(() => {
-      expect(store.getActions()).toEqual(expectedActions);
+    store.subscribe(() => {
+      const actions = store.getActions();
+      if (actions.length >= expectedActions.length) {
+        expect(actions).toEqual(expectedActions);
+        done();
+      }
     });
+
+    store.dispatch(getCharactersStart());
   });
 
-  it('creates GET_CHARACTERS_START, GET_CHARACTERS_FAILURE after failing to fetch characters', () => {
+  it('creates GET_CHARACTERS_START, GET_CHARACTERS_FAILURE after failing to fetch characters', done => {
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
       request.respondWith({
@@ -78,10 +88,17 @@ describe('getCharacters', () => {
 
     const initialState = { characters: [] };
     const store = mockStore(initialState);
+    sagaMiddleware.run(charactersSaga);
 
-    return store.dispatch<any>(getCharacters()).then(() => {
-      expect(store.getActions()).toEqual(expectedActions);
+    store.subscribe(() => {
+      const actions = store.getActions();
+      if (actions.length >= expectedActions.length) {
+        expect(actions).toEqual(expectedActions);
+        done();
+      }
     });
+
+    store.dispatch(getCharactersStart());
   });
 });
 
@@ -90,17 +107,19 @@ describe('searchCharacters', () => {
   beforeEach(() => { moxios.install(); });
   afterEach(() => { moxios.uninstall(); });
 
-  it('creates GET_CHARACTERS_START, GET_CHARACTERS_SUCCESS after successfuly fetching characters', () => {
+  it('creates SEARCH_CHARACTERS, GET_CHARACTERS_SUCCESS after successfuly fetching characters', done => {
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
       request.respondWith({
         status: 200,
-        response: GetCharactersMock,
+        response: { results: GetCharactersMock },
       });
     });
 
+     const term = 'Luke';
+
     const expectedActions = [
-      getCharactersStart(),
+      searchCharacters(term),
       getCharactersSuccess(GetCharactersMock)
     ];
 
@@ -110,13 +129,20 @@ describe('searchCharacters', () => {
       isFetching: false,
     };
     const store = mockStore(initialState);
+    sagaMiddleware.run(charactersSaga);
 
-    return store.dispatch<any>(searchCharacters('Luke')).then(() => {
-      expect(store.getActions()).toEqual(expectedActions);
+    store.subscribe(() => {
+      const actions = store.getActions();
+      if (actions.length >= expectedActions.length) {
+        expect(actions).toEqual(expectedActions);
+        done();
+      }
     });
+
+    store.dispatch(searchCharacters(term));
   });
 
-  it('creates GET_CHARACTERS_START, GET_CHARACTERS_FAILURE after failing to fetch characters', () => {
+  it('creates SEARCH_CHARACTERS, GET_CHARACTERS_FAILURE after failing to fetch characters', done => {
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
       request.respondWith({
@@ -125,16 +151,25 @@ describe('searchCharacters', () => {
       });
     });
 
+    const term = 'Luke';
+
     const expectedActions = [
-      getCharactersStart(),
+      searchCharacters(term),
       getCharactersFailure(),
     ];
 
     const initialState = { characters: [] };
     const store = mockStore(initialState);
+    sagaMiddleware.run(charactersSaga);
 
-    return store.dispatch<any>(getCharacters('Luke')).then(() => {
-      expect(store.getActions()).toEqual(expectedActions);
+    store.subscribe(() => {
+      const actions = store.getActions();
+      if (actions.length >= expectedActions.length) {
+        expect(actions).toEqual(expectedActions);
+        done();
+      }
     });
+
+    store.dispatch(searchCharacters(term));
   });
 });

@@ -5,9 +5,11 @@ import IAppState from '../store/IAppState.interface';
 import ICharacter from './data/ICharacter.interface';
 import {
   setCharacter,
-  getCharacters,
+  getCharactersStart,
   searchCharacters
 } from './actions/CharacterActionCreators';
+
+
 import Character from './Character';
 import CharacterList from './CharacterList';
 import { CharacterSearch } from './CharacterSearch';
@@ -29,8 +31,10 @@ interface IProps {
 // Define container with available props
 export class CharacterContainer extends React.Component<IProps> {
   public componentDidMount() {
-    if (this.props.characters.length === 0) {
-      this.props.getCharacters();
+    const { characters, getCharacters } = this.props;
+
+    if (characters.length === 0) {
+      getCharacters();
     }
   }
 
@@ -80,8 +84,8 @@ const mapStateToProps = (store: IAppState) => {
 const mapDispatchToProps = (dispatch: any) => {
   return {
     setCharacter: (character: any) => dispatch(setCharacter(character)),
-    getCharacters: () => dispatch(getCharacters()),
-    searchCharacters: (term: String) => dispatch(searchCharacters(term)),
+    getCharacters: () => dispatch(getCharactersStart()),
+    searchCharacters: (term: string) => dispatch(searchCharacters(term)),
   }
 }
 
