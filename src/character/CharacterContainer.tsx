@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useEffect} from 'react';
 import { connect } from 'react-redux';
 
 import IAppState from '../store/IAppState.interface';
@@ -20,55 +20,50 @@ import Loader from './Loader';
 // Define available props
 // TODO: use correct typing for getCharacters
 interface IProps {
-  character: any,
   setCharacter: Function,
   getCharacters: Function,
   searchCharacters: Function,
+  character: any,
   characters: ICharacter[],
   isFetching: Boolean
 }
 
 // Define container with available props
-export class CharacterContainer extends React.Component<IProps> {
-  public componentDidMount() {
-    const { characters, getCharacters } = this.props;
-
+export const CharacterContainer: React.SFC<IProps> = ({
+  setCharacter,
+  getCharacters,
+  searchCharacters,
+  character,
+  characters,
+  isFetching
+}) => {
+  useEffect(() => {
     if (characters.length === 0) {
       getCharacters();
     }
-  }
+  });
 
-  public render() {
-    const {
-      character,
-      characters,
-      setCharacter,
-      searchCharacters,
-      isFetching
-    } = this.props;
+  return (
+    <div className="characters-container">
+      <NavigationBar>
+        <CharacterSearch searchCharacters={searchCharacters} />
+      </NavigationBar>
 
-    return (
-      <div className="characters-container">
-        <NavigationBar>
-          <CharacterSearch searchCharacters={searchCharacters} />
-        </NavigationBar>
-
-        { isFetching ? (
-          <Loader></Loader>
-        ) : (
-          <div className="row">
-            <div className="col-sm">
-              <CharacterList characters={characters} setCharacter={setCharacter} />
-            </div>
-
-            <div className="col-sm">
-              <Character character={character} />
-            </div>
+      { isFetching ? (
+        <Loader></Loader>
+      ) : (
+        <div className="row">
+          <div className="col-sm">
+            <CharacterList characters={characters} setCharacter={setCharacter} />
           </div>
-        )}
-      </div>
-    );
-  }
+
+          <div className="col-sm">
+            <Character character={character} />
+          </div>
+        </div>
+      )}
+    </div>
+  );
 }
 
 // Make data available on props
