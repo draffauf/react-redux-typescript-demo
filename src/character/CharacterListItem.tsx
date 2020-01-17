@@ -8,24 +8,20 @@ interface IProps {
   setCharacter: any,
 }
 
-export class CharacterListItem extends React.Component<IProps> {
-  _onClickHandler = (event: React.MouseEvent) => {
-    const { character, setCharacter } = this.props;
+const CharacterListItem: React.SFC<IProps> = ({ character, setCharacter }: IProps) => {
+  const _onClickHandler = (event: React.MouseEvent) => {
     event.preventDefault();
     setCharacter(character);
   }
 
-  render() {
-    const { character } = this.props;
-    return (
-      <li
-        key={character.name}
-        className="list-group-item"
-        onClick={this._onClickHandler}>
-        {character.name}
-      </li>
-    );
-  }
+  return (
+    <li
+      key={character.name}
+      className="list-group-item"
+      onClick={_onClickHandler}>
+      {character.name}
+    </li>
+  );
 };
 
 export default CharacterListItem;

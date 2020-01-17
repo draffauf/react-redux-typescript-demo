@@ -10,17 +10,15 @@ interface IProps {
   characters: ICharacter[];
 }
 
-const CharacterList: React.SFC<IProps> = props => {
-  const {
-    setCharacter,
-    characters
-  } = props;
-
+const CharacterList: React.SFC<IProps> = ({setCharacter, characters}) => {
   return (
     <ul className="list-group">
       {characters && characters.map(character => {
         return (
-          <CharacterListItem key={character.name} character={character} setCharacter={setCharacter} />
+          <CharacterListItem
+            key={character.name}
+            character={character}
+            setCharacter={setCharacter} />
         );
       })}
     </ul>

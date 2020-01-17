@@ -1,43 +1,40 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 
 // Create interface for Props
 interface IProps {
-  searchCharacters: any,
+  searchCharacters: Function,
 }
 
-export class CharacterSearch extends React.Component<IProps, { value: string }> {
-  state = {
-    value: '',
-  };
+const CharacterSearch: React.SFC<IProps> = ({ searchCharacters }: IProps) => {
+  const [searchTerm, setSearchTerm] = useState('');
 
-  _onChangeHandler = (event: React.ChangeEvent) => {
+  const _onChangeHandler = (event: React.ChangeEvent) => {
     const input = (event.target as HTMLInputElement).value;
-    this.setState({ value: input });
+    setSearchTerm(input);
   }
 
-  _onSubmitHandler = (event: React.FormEvent) => {
-    const { searchCharacters } = this.props;
+  const _onSubmitHandler = (event: React.FormEvent) => {
     event.preventDefault();
-    searchCharacters(this.state.value);
+    searchCharacters(searchTerm);
   }
 
-  render() {
-    return (
-      <form
-        className="form-inline"
-        onSubmit={this._onSubmitHandler}>
-        <input
-          className="form-control mr-sm-2"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-          value={this.state.value}
-          onChange={this._onChangeHandler} />
-        <button
-          className="btn btn-outline-success my-2 my-sm-0"
-          type="submit"
-        >Search</button>
-      </form>
-    );
-  }
+  return (
+    <form
+      className="form-inline"
+      onSubmit={_onSubmitHandler}>
+      <input
+        className="form-control mr-sm-2"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+        value={searchTerm}
+        onChange={_onChangeHandler} />
+      <button
+        className="btn btn-outline-success my-2 my-sm-0"
+        type="submit"
+      >Search</button>
+    </form>
+  );
 };
+
+export default CharacterSearch;

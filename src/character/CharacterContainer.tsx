@@ -12,7 +12,7 @@ import {
 
 import Character from './Character';
 import CharacterList from './CharacterList';
-import { CharacterSearch } from './CharacterSearch';
+import CharacterSearch from './CharacterSearch';
 import NavigationBar from './NavigationBar';
 import Loader from './Loader';
 
