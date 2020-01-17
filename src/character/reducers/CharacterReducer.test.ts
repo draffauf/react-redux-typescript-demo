@@ -1,8 +1,8 @@
 import {
-  setCharacter,
-  getCharactersStart,
-  getCharactersSuccess,
-  getCharactersFailure
+  setCharacterActionCreator,
+  getCharactersStartActionCreator,
+  getCharactersSuccessActionCreator,
+  getCharactersFailureActionCreator
 } from '../actions/CharacterActionCreators';
 import ICharacterState from "../data/ICharacterState.interface";
 import GetCharacterMock from '../data/GetCharacterMock';
@@ -16,7 +16,7 @@ const initialState: ICharacterState = {
 
 describe('CharacterReducer action type responses for', () => {
   describe('SET_CHARACTER', () => {
-    const action = setCharacter(GetCharacterMock);
+    const action = setCharacterActionCreator(GetCharacterMock);
     const newState = CharacterReducer(initialState, action);
 
     it('character is set', () => {
@@ -25,7 +25,7 @@ describe('CharacterReducer action type responses for', () => {
   });
 
   describe('GET_CHARACTERS_START', () => {
-    const action = getCharactersStart();
+    const action = getCharactersStartActionCreator();
     const newState = CharacterReducer(initialState, action);
 
     it('is fetching', () => {
@@ -35,7 +35,7 @@ describe('CharacterReducer action type responses for', () => {
 
   describe('GET_CHARACTERS_SUCCESS', () => {
     const data = GetCharactersMock ;
-    const action = getCharactersSuccess(data);
+    const action = getCharactersSuccessActionCreator(data);
     const newState = CharacterReducer(initialState, action);
     it('fetched characters', () => {
       expect(newState.characters).toEqual(GetCharactersMock);
@@ -47,7 +47,7 @@ describe('CharacterReducer action type responses for', () => {
   });
 
   describe('GET_CHARACTERS_FAILURE', () => {
-    const action = getCharactersFailure();
+    const action = getCharactersFailureActionCreator();
     const newState = CharacterReducer(initialState, action);
 
     it('has not fetched characters', () => {

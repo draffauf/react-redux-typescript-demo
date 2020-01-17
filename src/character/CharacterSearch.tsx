@@ -6,9 +6,9 @@ interface IProps {
 }
 
 export class CharacterSearch extends React.Component<IProps, { value: string }> {
-  componentWillMount() {
-    this.setState({ value: '' });
-  }
+  state = {
+    value: '',
+  };
 
   _onChangeHandler = (event: React.ChangeEvent) => {
     const input = (event.target as HTMLInputElement).value;

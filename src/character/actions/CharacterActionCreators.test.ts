@@ -2,18 +2,18 @@
 import GetCharacterMock from '../data/GetCharacterMock';
 import GetCharactersMock from '../data/GetCharactersMock';
 import {
-  setCharacter,
-  searchCharacters,
-  getCharactersStart,
-  getCharactersSuccess,
-  getCharactersFailure,
+  setCharacterActionCreator,
+  searchCharactersActionCreator,
+  getCharactersStartActionCreator,
+  getCharactersSuccessActionCreator,
+  getCharactersFailureActionCreator,
 } from './CharacterActionCreators';
 import CharacterActionTypes from './CharacterActionTypes.enum';
 
 // Tests
 describe('setCharacter', () => {
   it('creates ISetCharacterAction', () => {
-    const action = setCharacter(GetCharacterMock);
+    const action = setCharacterActionCreator(GetCharacterMock);
 
     expect(action).toEqual({
       type: CharacterActionTypes.SET_CHARACTER,
@@ -26,7 +26,7 @@ describe('setCharacter', () => {
 describe('searchCharacters', () => {
   it('creates ISearchCharactersAction', () => {
     const term = "Darth";
-    const action = searchCharacters(term);
+    const action = searchCharactersActionCreator(term);
 
     expect(action).toEqual({
       type: CharacterActionTypes.SEARCH_CHARACTERS,
@@ -39,7 +39,7 @@ describe('searchCharacters', () => {
 describe('getCharactersStart', () => {
   it('creates IGetCharactersStartAction', () => {
     const term = "Darth";
-    const action = getCharactersStart();
+    const action = getCharactersStartActionCreator();
 
     expect(action).toEqual({
       type: CharacterActionTypes.GET_CHARACTERS_START,
@@ -50,7 +50,7 @@ describe('getCharactersStart', () => {
 
 describe('getCharactersSuccess', () => {
   it('creates IGetCharactersSuccessAction', () => {
-    const action = getCharactersSuccess(GetCharactersMock);
+    const action = getCharactersSuccessActionCreator(GetCharactersMock);
 
     expect(action).toEqual({
       type: CharacterActionTypes.GET_CHARACTERS_SUCCESS,
@@ -62,7 +62,7 @@ describe('getCharactersSuccess', () => {
 
 describe('getCharactersFailure', () => {
   it('creates IGetCharactersFailureAction', () => {
-    const action = getCharactersFailure();
+    const action = getCharactersFailureActionCreator();
 
     expect(action).toEqual({
       type: CharacterActionTypes.GET_CHARACTERS_FAILURE,

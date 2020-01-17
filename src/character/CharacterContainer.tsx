@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import IAppState from '../store/IAppState.interface';
 import ICharacter from './data/ICharacter.interface';
 import {
-  setCharacter,
-  getCharactersStart,
-  searchCharacters
+  setCharacterActionCreator,
+  getCharactersStartActionCreator,
+  searchCharactersActionCreator
 } from './actions/CharacterActionCreators';
 
 
@@ -83,9 +83,9 @@ const mapStateToProps = (store: IAppState) => {
 // Make functions available on props
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    setCharacter: (character: any) => dispatch(setCharacter(character)),
-    getCharacters: () => dispatch(getCharactersStart()),
-    searchCharacters: (term: string) => dispatch(searchCharacters(term)),
+    setCharacter: (character: any) => dispatch(setCharacterActionCreator(character)),
+    getCharacters: () => dispatch(getCharactersStartActionCreator()),
+    searchCharacters: (term: string) => dispatch(searchCharactersActionCreator(term)),
   }
 }
 

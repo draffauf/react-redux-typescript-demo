@@ -8,7 +8,7 @@ import {
   ISearchCharactersAction
 } from './IGetCharactersActions.interface';
 
-export const setCharacter = (character: any): ISetCharacterAction => {
+export const setCharacterActionCreator = (character: any): ISetCharacterAction => {
   return {
     type: CharacterActionTypes.SET_CHARACTER,
     character: character,
@@ -16,7 +16,7 @@ export const setCharacter = (character: any): ISetCharacterAction => {
   };
 }
 
-export const searchCharacters = (term: string): ISearchCharactersAction => {
+export const searchCharactersActionCreator = (term: string): ISearchCharactersAction => {
   return {
     type: CharacterActionTypes.SEARCH_CHARACTERS,
     term,
@@ -24,14 +24,14 @@ export const searchCharacters = (term: string): ISearchCharactersAction => {
   };
 }
 
-export const getCharactersStart = (): IGetCharactersStartAction => {
+export const getCharactersStartActionCreator = (): IGetCharactersStartAction => {
   return {
     type: CharacterActionTypes.GET_CHARACTERS_START,
     isFetching: true,
   };
 }
 
-export const getCharactersSuccess = (characters: any): IGetCharactersSuccessAction => {
+export const getCharactersSuccessActionCreator = (characters: any): IGetCharactersSuccessAction => {
   return {
     type: CharacterActionTypes.GET_CHARACTERS_SUCCESS,
     characters,
@@ -39,7 +39,7 @@ export const getCharactersSuccess = (characters: any): IGetCharactersSuccessActi
   };
 }
 
-export const getCharactersFailure = (): IGetCharactersFailureAction => {
+export const getCharactersFailureActionCreator = (): IGetCharactersFailureAction => {
   return {
     type: CharacterActionTypes.GET_CHARACTERS_FAILURE,
     isFetching: false,

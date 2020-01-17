@@ -1,157 +1,85 @@
-import configureMockStore from 'redux-mock-store';
-import moxios from 'moxios';
+// Libraries
+import { call, put } from 'redux-saga/effects';
 
 // App imports
-import GetCharactersMock from '../data/GetCharactersMock';
 import {
-  searchCharacters,
-  getCharactersStart,
-  getCharactersSuccess,
-  getCharactersFailure,
+  searchCharactersActionCreator,
+  getCharactersStartActionCreator,
+  getCharactersSuccessActionCreator,
+  getCharactersFailureActionCreator,
 } from '../actions/CharacterActionCreators';
-import createSagaMiddleware from 'redux-saga';
-import charactersSaga from './Character';
 
-// Configure the mockStore function
-// Note: if this begins to be used in several places, make a helper
-const sagaMiddleware = createSagaMiddleware();
-const mockStore = configureMockStore([sagaMiddleware]);
+import GetCharactersMock from '../data/GetCharactersMock';
+
+import {
+  getCharactersFromApi,
+  searchCharactersFromApi,
+} from '../data/Api';
+
+import {
+  getCharactersSaga,
+  searchCharactersSaga,
+} from './Character';
 
 // Tests
-describe('getCharactersStart', () => {
-  beforeEach(() => { moxios.install(); });
-  afterEach(() => { moxios.uninstall(); });
+describe('getCharacters', () => {
+  it('success triggers success action with characters', () => {
+    const generator = getCharactersSaga();
+    const response = { data: { results: GetCharactersMock } };
 
-  it('creates GET_CHARACTERS_START, GET_CHARACTERS_SUCCESS after successfuly fetching characters', done => {
-    moxios.wait(() => {
-      const request = moxios.requests.mostRecent();
-      request.respondWith({
-        status: 200,
-        response: { results: GetCharactersMock },
-      });
-    });
+    expect(generator.next().value)
+      .toEqual(call(getCharactersFromApi));
 
-    const expectedActions = [
-      getCharactersStart(),
-      getCharactersSuccess(GetCharactersMock),
-    ];
+    expect(generator.next(response).value)
+      .toEqual(put(getCharactersSuccessActionCreator(GetCharactersMock)));
 
-    const initialState = {
-      characters: [],
-      isFetching: false,
-    };
-    const store = mockStore(initialState);
-    sagaMiddleware.run(charactersSaga);
-
-    store.subscribe(() => {
-      const actions = store.getActions();
-      if (actions.length >= expectedActions.length) {
-        expect(actions).toEqual(expectedActions);
-        done();
-      }
-    });
-
-    store.dispatch(getCharactersStart());
+    expect(generator.next())
+      .toEqual({ done: true, value: undefined });
   });
 
-  it('creates GET_CHARACTERS_START, GET_CHARACTERS_FAILURE after failing to fetch characters', done => {
-    moxios.wait(() => {
-      const request = moxios.requests.mostRecent();
-      request.respondWith({
-        status: 500,
-        response: {},
-      });
-    });
+  it('failure triggers failure action', () => {
+    const generator = getCharactersSaga();
+    const response = {};
 
-    const expectedActions = [
-      getCharactersStart(),
-      getCharactersFailure(),
-    ];
+    expect(generator.next().value)
+      .toEqual(call(getCharactersFromApi));
 
-    const initialState = { characters: [] };
-    const store = mockStore(initialState);
-    sagaMiddleware.run(charactersSaga);
+    expect(generator.next(response).value)
+      .toEqual(put(getCharactersFailureActionCreator()));
 
-    store.subscribe(() => {
-      const actions = store.getActions();
-      if (actions.length >= expectedActions.length) {
-        expect(actions).toEqual(expectedActions);
-        done();
-      }
-    });
-
-    store.dispatch(getCharactersStart());
+    expect(generator.next())
+      .toEqual({ done: true, value: undefined });
   });
 });
 
-
 describe('searchCharacters', () => {
-  beforeEach(() => { moxios.install(); });
-  afterEach(() => { moxios.uninstall(); });
+  it('success triggers success action with characters', () => {
+    const term = 'Luke';
+    const generator = searchCharactersSaga(searchCharactersActionCreator(term));
+    const response = { data: { results: GetCharactersMock } };
 
-  it('creates SEARCH_CHARACTERS, GET_CHARACTERS_SUCCESS after successfuly fetching characters', done => {
-    moxios.wait(() => {
-      const request = moxios.requests.mostRecent();
-      request.respondWith({
-        status: 200,
-        response: { results: GetCharactersMock },
-      });
-    });
+    expect(generator.next().value)
+      .toEqual(call(searchCharactersFromApi, term));
 
-     const term = 'Luke';
+    expect(generator.next(response).value)
+      .toEqual(put(getCharactersSuccessActionCreator(GetCharactersMock)));
 
-    const expectedActions = [
-      searchCharacters(term),
-      getCharactersSuccess(GetCharactersMock)
-    ];
-
-    const initialState = {
-      character: undefined,
-      characters: [],
-      isFetching: false,
-    };
-    const store = mockStore(initialState);
-    sagaMiddleware.run(charactersSaga);
-
-    store.subscribe(() => {
-      const actions = store.getActions();
-      if (actions.length >= expectedActions.length) {
-        expect(actions).toEqual(expectedActions);
-        done();
-      }
-    });
-
-    store.dispatch(searchCharacters(term));
+    expect(generator.next())
+      .toEqual({ done: true, value: undefined });
   });
 
-  it('creates SEARCH_CHARACTERS, GET_CHARACTERS_FAILURE after failing to fetch characters', done => {
-    moxios.wait(() => {
-      const request = moxios.requests.mostRecent();
-      request.respondWith({
-        status: 500,
-        response: {},
-      });
-    });
-
+  it('failure triggers failure action', () => {
     const term = 'Luke';
+    const generator = searchCharactersSaga(searchCharactersActionCreator(term));
+    const response = {};
 
-    const expectedActions = [
-      searchCharacters(term),
-      getCharactersFailure(),
-    ];
+    expect(generator.next().value)
+      .toEqual(call(searchCharactersFromApi, term));
 
-    const initialState = { characters: [] };
-    const store = mockStore(initialState);
-    sagaMiddleware.run(charactersSaga);
+    expect(generator.next(response).value)
+      .toEqual(put(getCharactersFailureActionCreator()));
 
-    store.subscribe(() => {
-      const actions = store.getActions();
-      if (actions.length >= expectedActions.length) {
-        expect(actions).toEqual(expectedActions);
-        done();
-      }
-    });
-
-    store.dispatch(searchCharacters(term));
+    expect(generator.next())
+      .toEqual({ done: true, value: undefined });
   });
 });

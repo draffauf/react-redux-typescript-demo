@@ -1,45 +1,44 @@
 import { call, put, takeEvery, all } from 'redux-saga/effects';
 import CharacterActionTypes from '../actions/CharacterActionTypes.enum';
-import { RestDataSource } from '../data/RestDataSource';
 
 import {
-  getCharactersSuccess,
-  getCharactersFailure
+  getCharactersFromApi,
+  searchCharactersFromApi,
+} from '../data/Api';
+
+import {
+  getCharactersSuccessActionCreator,
+  getCharactersFailureActionCreator
 } from '../actions/CharacterActionCreators';
 
 import {
-  ISearchCharactersAction,
-  IGetCharactersStartAction
+  ISearchCharactersAction
 } from '../actions/IGetCharactersActions.interface';
 
 
-function* getCharacters(action: IGetCharactersStartAction) : any {
-  const dataSource: RestDataSource = new RestDataSource();
-
+export function* getCharactersSaga() : any {
   try {
-    const response = yield call(dataSource.getCharacters);
+    const response = yield call(getCharactersFromApi);
     const characters = response.data.results;
-    yield put(getCharactersSuccess(characters))
+    yield put(getCharactersSuccessActionCreator(characters))
   } catch(e) {
-    yield put(getCharactersFailure());
+    yield put(getCharactersFailureActionCreator());
   }
 }
 
-function* searchCharacters(action: ISearchCharactersAction) : any {
-  const dataSource: RestDataSource = new RestDataSource();
-
+export function* searchCharactersSaga(action: ISearchCharactersAction) : any {
   try {
-    const response = yield call(dataSource.searchCharacters, action.term);
+    const response = yield call(searchCharactersFromApi, action.term);
     const characters = response.data.results;
-    yield put(getCharactersSuccess(characters))
+    yield put(getCharactersSuccessActionCreator(characters))
   } catch(e) {
-    yield put(getCharactersFailure());
+    yield put(getCharactersFailureActionCreator());
   }
 };
 
-export default function* charactersSaga() {
+export function* charactersSaga() {
   yield all([
-    takeEvery(CharacterActionTypes.GET_CHARACTERS_START, getCharacters),
-    takeEvery(CharacterActionTypes.SEARCH_CHARACTERS, searchCharacters)
+    takeEvery(CharacterActionTypes.GET_CHARACTERS_START, getCharactersSaga),
+    takeEvery(CharacterActionTypes.SEARCH_CHARACTERS, searchCharactersSaga)
   ]);
 }

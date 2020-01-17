@@ -5,7 +5,7 @@ I also updated the initial app to be based off of an article by [DefinedByChoice
 
 | Statements | Branches | Functions | Lines |
 | -----------|----------|-----------|-------|
-| ![Statements](https://img.shields.io/badge/Coverage-88.76%25-yellow.svg "Make me better!") | ![Branches](https://img.shields.io/badge/Coverage-85.71%25-yellow.svg "Make me better!") | ![Functions](https://img.shields.io/badge/Coverage-79.41%25-red.svg "Make me better!") | ![Lines](https://img.shields.io/badge/Coverage-89.77%25-yellow.svg "Make me better!") |
+| ![Statements](https://img.shields.io/badge/Coverage-88.24%25-yellow.svg "Make me better!") | ![Branches](https://img.shields.io/badge/Coverage-85.71%25-yellow.svg "Make me better!") | ![Functions](https://img.shields.io/badge/Coverage-78.13%25-red.svg "Make me better!") | ![Lines](https://img.shields.io/badge/Coverage-89.29%25-yellow.svg "Make me better!") |
 
 ## Goals
 

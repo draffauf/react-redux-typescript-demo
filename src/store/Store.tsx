@@ -6,7 +6,7 @@ import {
   Store
 } from 'redux';
 
-// import thunk from 'redux-thunk';
+// React Sagas
 import createSagaMiddleware from 'redux-saga';
 
 // Chrome Dev Tools
@@ -15,7 +15,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 // Business domain imports
 import IAppState from './IAppState.interface';
 import CharacterReducer from '../character/reducers/CharacterReducer';
-import charactersSagas from '../character/sagas/Character';
+import { charactersSaga } from '../character/sagas/Character';
 
 // Saga Middleware
 const sagaMiddleware = createSagaMiddleware();
@@ -33,7 +33,7 @@ export default function configureStore(): Store<IAppState, any> {
                   composeWithDevTools(applyMiddleware(sagaMiddleware))
                 );
 
-  sagaMiddleware.run(charactersSagas);
+  sagaMiddleware.run(charactersSaga);
 
   return store;
 }
