@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 import IAppState from '../store/IAppState.interface';
@@ -37,7 +37,9 @@ export const CharacterContainer: React.SFC<IProps> = ({
   characters,
   isFetching
 }) => {
-  useEffect(() => {
+  // Workaround for Enyzme testing of useEffect, allows stubbing
+  // See: https://blog.carbonfive.com/2019/08/05/shallow-testing-hooks-with-enzyme/
+  React.useEffect(() => {
     if (characters.length === 0) {
       getCharacters();
     }

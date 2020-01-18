@@ -32,6 +32,12 @@ const renderCharacterListContainer = ({
   );
 }
 
+// Workaround for Enyzme testing of useEffect
+// See: https://blog.carbonfive.com/2019/08/05/shallow-testing-hooks-with-enzyme/
+const mockUseEffect = (): jest.SpyInstance => {
+  return jest.spyOn(React, 'useEffect').mockImplementation(f => f());
+}
+
 // Tests
 describe('CharacterListContainer', () => {
   describe('when fetching', () => {
@@ -45,26 +51,27 @@ describe('CharacterListContainer', () => {
   });
 
   describe('without characters', () => {
-    const getCharacters = jest.fn();
-    const wrapper = renderCharacterListContainer({ getCharacters });
+    const characters: ICharacter[] = [];
+    const getCharacters = jest.fn().mockResolvedValue(GetCharactersMock);
+    mockUseEffect();
+    renderCharacterListContainer({ characters, getCharacters });
 
-    // Not currently supported with Shallow but on the roadmap.
-    //
-    // it('calls getCharacters', () => {
-    //   expect(getCharacters.mock.calls.length).toBe(1)
-    // });
+    it('calls getCharacters', () => {
+      expect(getCharacters).toHaveBeenCalledTimes(1);
+    });
   });
 
   describe('with characters', () => {
     const characters: ICharacter[] = GetCharactersMock;
-    const getCharacters = jest.fn();
+    const getCharacters = jest.fn().mockResolvedValue(GetCharactersMock);
+    mockUseEffect();
     const wrapper = renderCharacterListContainer({
       characters,
       getCharacters
     });
 
     it('does not call getCharacters', () => {
-      expect(getCharacters.mock.calls.length).toBe(0)
+      expect(getCharacters).not.toHaveBeenCalled();
     });
 
     it('a character container', () => {
