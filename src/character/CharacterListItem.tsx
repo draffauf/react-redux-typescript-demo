@@ -5,11 +5,11 @@ import ICharacter from './data/ICharacter.interface';
 // Create interface for Props
 interface IProps {
   character: ICharacter,
-  setCharacter: any,
+  setCharacter: Function,
 }
 
 const CharacterListItem: React.SFC<IProps> = ({ character, setCharacter }: IProps) => {
-  const _onClickHandler = (event: React.MouseEvent) => {
+  const onClickHandler = (event: React.MouseEvent) => {
     event.preventDefault();
     setCharacter(character);
   }
@@ -18,7 +18,7 @@ const CharacterListItem: React.SFC<IProps> = ({ character, setCharacter }: IProp
     <li
       key={character.name}
       className="list-group-item"
-      onClick={_onClickHandler}>
+      onClick={onClickHandler}>
       {character.name}
     </li>
   );

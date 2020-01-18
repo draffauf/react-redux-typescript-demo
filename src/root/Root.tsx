@@ -13,12 +13,10 @@ interface IProps {
 
 // Create a root component that receives the store via props and
 // wraps the App component with Provider, giving props to containers
-const Root: React.SFC<IProps> = props => {
-  return (
-    <Provider store={props.store}>
-      <App />
-    </Provider>
-  );
-};
+const Root: React.SFC<IProps> = ({ store }) => (
+  <Provider store={store}>
+    <App />
+  </Provider>
+);
 
 export default Root;

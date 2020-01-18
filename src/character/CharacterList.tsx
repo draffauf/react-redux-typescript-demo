@@ -6,23 +6,19 @@ import CharacterListItem from './CharacterListItem';
 
 // Create interface for Props
 interface IProps {
-  setCharacter: any,
+  setCharacter: Function,
   characters: ICharacter[];
 }
 
-const CharacterList: React.SFC<IProps> = ({setCharacter, characters}) => {
-  return (
-    <ul className="list-group">
-      {characters && characters.map(character => {
-        return (
-          <CharacterListItem
-            key={character.name}
-            character={character}
-            setCharacter={setCharacter} />
-        );
-      })}
-    </ul>
-  );
-};
+const CharacterList: React.SFC<IProps> = ({ characters, setCharacter }) => (
+  <ul className="list-group">
+    {characters && characters.map(character => (
+      <CharacterListItem
+        key={character.name}
+        character={character}
+        setCharacter={setCharacter} />
+    ))}
+  </ul>
+);
 
 export default CharacterList;

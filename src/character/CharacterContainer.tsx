@@ -3,25 +3,26 @@ import { connect } from 'react-redux';
 
 import IAppState from '../store/IAppState.interface';
 import ICharacter from './data/ICharacter.interface';
+
 import {
   setCharacterActionCreator,
   getCharactersStartActionCreator,
   searchCharactersActionCreator
 } from './actions/CharacterActionCreators';
 
-
 import Character from './Character';
 import CharacterList from './CharacterList';
+import CharacterMissing from './CharacterMissing';
 import CharacterSearch from './CharacterSearch';
-import NavigationBar from './NavigationBar';
 import Loader from './Loader';
+import NavigationBar from './NavigationBar';
 
 
 // Define available props
 // TODO: use correct typing for getCharacters
 interface IProps {
-  setCharacter: Function,
   getCharacters: Function,
+  setCharacter: Function,
   searchCharacters: Function,
   character: any,
   characters: ICharacter[],
@@ -30,8 +31,8 @@ interface IProps {
 
 // Define container with available props
 export const CharacterContainer: React.SFC<IProps> = ({
-  setCharacter,
   getCharacters,
+  setCharacter,
   searchCharacters,
   character,
   characters,
@@ -40,10 +41,9 @@ export const CharacterContainer: React.SFC<IProps> = ({
   // Workaround for Enyzme testing of useEffect, allows stubbing
   // See: https://blog.carbonfive.com/2019/08/05/shallow-testing-hooks-with-enzyme/
   React.useEffect(() => {
-    if (characters.length === 0) {
+    if (characters.length === 0)
       getCharacters();
-    }
-  });
+  }, [characters, getCharacters]);
 
   return (
     <div className="characters-container">
@@ -51,19 +51,24 @@ export const CharacterContainer: React.SFC<IProps> = ({
         <CharacterSearch searchCharacters={searchCharacters} />
       </NavigationBar>
 
-      { isFetching ? (
-        <Loader></Loader>
-      ) : (
-        <div className="row">
-          <div className="col-sm">
-            <CharacterList characters={characters} setCharacter={setCharacter} />
-          </div>
+      { isFetching
+        ? <Loader></Loader>
+        : (
+          <div className="row">
+            <div className="col-sm">
+              <CharacterList
+                characters={characters}
+                setCharacter={setCharacter} />
+            </div>
 
-          <div className="col-sm">
-            <Character character={character} />
+            <div className="col-sm">
+              {character
+                ? <Character character={character} />
+                : <CharacterMissing />}
+            </div>
           </div>
-        </div>
-      )}
+        )
+      }
     </div>
   );
 }
@@ -80,8 +85,8 @@ const mapStateToProps = (store: IAppState) => {
 // Make functions available on props
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    setCharacter: (character: any) => dispatch(setCharacterActionCreator(character)),
     getCharacters: () => dispatch(getCharactersStartActionCreator()),
+    setCharacter: (character: any) => dispatch(setCharacterActionCreator(character)),
     searchCharacters: (term: string) => dispatch(searchCharactersActionCreator(term)),
   }
 }

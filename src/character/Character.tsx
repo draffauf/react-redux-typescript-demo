@@ -2,42 +2,33 @@ import * as React from 'react';
 
 import ICharacter from './data/ICharacter.interface';
 
-// Create interface for Props
 interface IProps {
   character: ICharacter
 }
 
-const Character: React.SFC<IProps> = ({ character }: IProps) => {
-  function fallback() {
-    return <h2>Select a Character</h2>;
-  }
+const Character: React.SFC<IProps> = ({ character }: IProps) => (
+  <>
+    <h2>{character.name}</h2>
 
-  if(!character) { return fallback() };
-
-  return (
-    <React.Fragment>
-      <h2>{character.name}</h2>
-
-      <table className="table">
-        <thead>
-          <tr>
-            <th scope="col">Info</th>
-            <th scope="col">Value</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">Height</th>
-            <td>{character.height}</td>
-          </tr>
-          <tr>
-            <th scope="row">Mass</th>
-            <td>{character.mass}</td>
-          </tr>
-        </tbody>
-      </table>
-    </React.Fragment>
-  );
- };
+    <table className="table">
+      <thead>
+        <tr>
+          <th scope="col">Info</th>
+          <th scope="col">Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Height</th>
+          <td>{character.height}</td>
+        </tr>
+        <tr>
+          <th scope="row">Mass</th>
+          <td>{character.mass}</td>
+        </tr>
+      </tbody>
+    </table>
+  </>
+)
 
 export default Character;

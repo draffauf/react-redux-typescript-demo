@@ -7,8 +7,9 @@ import {
   IGetCharactersFailureAction,
   ISearchCharactersAction
 } from './IGetCharactersActions.interface';
+import ICharacter from '../data/ICharacter.interface';
 
-export const setCharacterActionCreator = (character: any): ISetCharacterAction => {
+export const setCharacterActionCreator = (character: ICharacter): ISetCharacterAction => {
   return {
     type: CharacterActionTypes.SET_CHARACTER,
     character: character,
@@ -31,7 +32,7 @@ export const getCharactersStartActionCreator = (): IGetCharactersStartAction => 
   };
 }
 
-export const getCharactersSuccessActionCreator = (characters: any): IGetCharactersSuccessAction => {
+export const getCharactersSuccessActionCreator = (characters: ICharacter[]): IGetCharactersSuccessAction => {
   return {
     type: CharacterActionTypes.GET_CHARACTERS_SUCCESS,
     characters,
