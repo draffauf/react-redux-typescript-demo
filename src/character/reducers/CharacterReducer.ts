@@ -24,6 +24,12 @@ const CharacterReducer: Reducer<ICharacterState, CharacterActions> = (
         character: action.character,
       };
     }
+    case CharacterActionTypes.SEARCH_CHARACTERS: {
+      return {
+        ...state,
+        isFetching: action.isFetching,
+      };
+    }
     case CharacterActionTypes.GET_CHARACTERS_START: {
       return {
         ...state,

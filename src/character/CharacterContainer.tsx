@@ -17,9 +17,6 @@ import CharacterSearch from './CharacterSearch';
 import Loader from './Loader';
 import NavigationBar from './NavigationBar';
 
-
-// Define available props
-// TODO: use correct typing for getCharacters
 interface IProps {
   getCharacters: Function,
   setCharacter: Function,
@@ -29,7 +26,7 @@ interface IProps {
   isFetching: Boolean
 }
 
-// Define container with available props
+// Note: This is mainly done to enable testing
 export const CharacterContainer: React.SFC<IProps> = ({
   getCharacters,
   setCharacter,
@@ -41,9 +38,8 @@ export const CharacterContainer: React.SFC<IProps> = ({
   // Workaround for Enyzme testing of useEffect, allows stubbing
   // See: https://blog.carbonfive.com/2019/08/05/shallow-testing-hooks-with-enzyme/
   React.useEffect(() => {
-    if (characters.length === 0)
-      getCharacters();
-  }, [characters, getCharacters]);
+    getCharacters();
+  }, [getCharacters]);
 
   return (
     <div className="characters-container">

@@ -4,7 +4,6 @@ import * as React from 'react';
 import ICharacter from './data/ICharacter.interface';
 import CharacterListItem from './CharacterListItem';
 
-// Create interface for Props
 interface IProps {
   setCharacter: Function,
   characters: ICharacter[];

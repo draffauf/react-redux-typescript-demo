@@ -38,7 +38,6 @@ describe('searchCharacters', () => {
 
 describe('getCharactersStart', () => {
   it('creates IGetCharactersStartAction', () => {
-    const term = "Darth";
     const action = getCharactersStartActionCreator();
 
     expect(action).toEqual({
