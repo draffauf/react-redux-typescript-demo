@@ -27,7 +27,7 @@ interface IProps {
 }
 
 // Note: This is mainly done to enable testing
-export const CharacterContainer: React.SFC<IProps> = ({
+export const CharacterContainer: React.FunctionComponent<IProps> = ({
   getCharacters,
   setCharacter,
   searchCharacters,

@@ -2,7 +2,7 @@ import * as React from 'react';
 
 interface IProps {}
 
-const Loader: React.SFC<IProps> = () => (
+const Loader: React.FunctionComponent<IProps> = () => (
   <div className='progress'>
     <div
       className='progress-bar progress-bar-striped progress-bar-animated'

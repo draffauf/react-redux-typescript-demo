@@ -5,7 +5,7 @@ interface IProps {
   searchCharacters: Function,
 }
 
-const CharacterSearch: React.SFC<IProps> = ({ searchCharacters }: IProps) => {
+const CharacterSearch: React.FunctionComponent<IProps> = ({ searchCharacters }: IProps) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const onChangeHandler = (event: React.ChangeEvent) => {

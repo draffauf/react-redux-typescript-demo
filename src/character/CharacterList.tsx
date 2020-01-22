@@ -9,7 +9,7 @@ interface IProps {
   characters: ICharacter[];
 }
 
-const CharacterList: React.SFC<IProps> = ({ characters, setCharacter }) => (
+const CharacterList: React.FunctionComponent<IProps> = ({ characters, setCharacter }) => (
   <ul className="list-group">
     {characters && characters.map(character => (
       <CharacterListItem

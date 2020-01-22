@@ -7,7 +7,7 @@ interface IProps {
   setCharacter: Function,
 }
 
-const CharacterListItem: React.SFC<IProps> = ({ character, setCharacter }: IProps) => {
+const CharacterListItem: React.FunctionComponent<IProps> = ({ character, setCharacter }: IProps) => {
   const onClickHandler = (event: React.MouseEvent) => {
     event.preventDefault();
     setCharacter(character);

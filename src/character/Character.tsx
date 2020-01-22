@@ -6,7 +6,7 @@ interface IProps {
   character: ICharacter
 }
 
-const Character: React.SFC<IProps> = ({ character }: IProps) => (
+const Character: React.FunctionComponent<IProps> = ({ character }: IProps) => (
   <>
     <h2>{character.name}</h2>
 
